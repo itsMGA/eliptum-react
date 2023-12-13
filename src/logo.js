@@ -1,7 +1,9 @@
 
 import React from "react";
 
-const LogoSVG = () => (
+const LogoSVG = () => {
+    return (
+    <>
     <svg
         aria-hidden="true"
         focusable="false"
@@ -25,7 +27,9 @@ const LogoSVG = () => (
             ></path>
         </g>
     </svg>
-);
+    </>
+    );
+}
 
 export default LogoSVG;
               

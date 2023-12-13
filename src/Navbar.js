@@ -1,5 +1,5 @@
 import React from "react";
-import logoSVG from './logo.svg'
+import LogoSVG from './logo.js'
 const Navbar = () => {
     return (
       <>
@@ -8,8 +8,7 @@ const Navbar = () => {
           <li className="logo">
             <a href="#" className="nav-link">
               <span className="link-text logo-text">Eliptum-Tech</span>
-              <>{logoSVG}</>
-
+              <LogoSVG />
             </a>
           </li>
           <li className="nav-item">

@@ -10,8 +10,8 @@ export default function App() {
   const [counter, setCount] = useState(0);
 
   useEffect(() => {
-    alert("Changed counter");
-  }, [counter]);
+    alert("test");
+  }, []);
 
   return (
     <html><head>
