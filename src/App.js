@@ -2,17 +2,17 @@ import React from "react";
 import "./style.css";
 import Navbar from "./Navbar"
 import { useState, useEffect } from "react";
-
+import Fader from "./Fader";
 
 
 export default function App() {
 
-  const [counter, setCount] = useState(0);
+  const [showCatContent, setShowCatContent] = useState(false);
 
-  useEffect(() => {
-    alert("test");
-  }, []);
-
+  const toggleCatContent = () => {
+    setShowCatContent(!showCatContent);
+  };
+  console.log(showCatContent)
   return (
     <html><head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,21 +24,23 @@ export default function App() {
       />
     </head>
     <body>
-      <div className="person">
-        <button onClick={() => setCount((prevCount) => prevCount - 1)} >-</button>
-        <h1>{counter}</h1>
-        <button onClick={() => setCount((prevCount) => prevCount + 1)} >+</button>
-      </div>
-      <Navbar />
+      <Navbar toggleCatContent={toggleCatContent} />
       <main>
-        <h1>CSS is Cool</h1>
-        <p>
-          I'm baby kale chips affogato ennui lumbersexual, williamsburg paleo quinoa
-          iceland normcore tumeric. Kitsch coloring book retro, seitan schlitz
-          tattooed biodiesel vexillologist neutra. Synth mumblecore deep v, umami
-          selfies normcore gluten-free snackwave. Seitan ramps drinking vinegar
-          venmo keytar, humblebrag VHS post-ironic tacos godard pour-over.
-        </p>
+       {showCatContent ? (
+          <Fader text="Hello React"></Fader>          
+        ) : (
+            <div>
+              <h1>CSS is Cool</h1>
+              <p>
+                I'm baby kale chips affogato ennui lumbersexual, williamsburg
+                paleo quinoa iceland normcore tumeric. Kitsch coloring book
+                retro, seitan schlitz tattooed biodiesel vexillologist neutra.
+                Synth mumblecore deep v, umami selfies normcore gluten-free
+                snackwave. Seitan ramps drinking vinegar venmo keytar,
+                humblebrag VHS post-ironic tacos godard pour-over.
+              </p>
+            </div>
+          )}
       </main>
     
   </body>

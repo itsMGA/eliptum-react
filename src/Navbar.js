@@ -1,6 +1,7 @@
 import React from "react";
 import LogoSVG from './logo.js'
-const Navbar = () => {
+const Navbar = (props) => {
+  
     return (
       <>
       <nav className="navbar">
@@ -11,7 +12,7 @@ const Navbar = () => {
               <LogoSVG />
             </a>
           </li>
-          <li className="nav-item">
+          <li className="nav-item" onClick={() => props.toggleCatContent()}>
             <a href="#" className="nav-link" name="cat">
               <svg
                 aria-hidden="true"
