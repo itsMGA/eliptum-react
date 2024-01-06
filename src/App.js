@@ -7,11 +7,23 @@ import Fader from "./Fader";
 
 export default function App() {
 
-  const [showHomeContent, setShowHomeContent] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("home");
 
-  const toggleHomeContent = () => {
-    setShowHomeContent(!showHomeContent);
+  const renderContent = () => {
+    switch (selectedOption) {
+      case "home":
+        return <Fader text="Home"></Fader>;        
+      case "products":
+        return <Fader text="Automate </>"></Fader>;        
+      case "shop":
+        return <Fader text="Shoppping Spree"></Fader>;        
+      case "contact":
+        return <Fader text="Hello, we'll be back soon"></Fader>;        
+      default:
+        return <Fader text="Home"></Fader>;        
+    }
   };
+  
   return (
     <html><head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,23 +35,9 @@ export default function App() {
       />
     </head>
     <body>
-      <Navbar toggleHomeContent={toggleHomeContent} />
-      <main>
-       {showHomeContent ? (
-          <Fader text="Hello React"></Fader>          
-        ) : (
-            <div>
-              <h1>CSS is Cool</h1>
-              <p>
-                I'm baby kale chips affogato ennui lumbersexual, williamsburg
-                paleo quinoa iceland normcore tumeric. Kitsch coloring book
-                retro, seitan schlitz tattooed biodiesel vexillologist neutra.
-                Synth mumblecore deep v, umami selfies normcore gluten-free
-                snackwave. Seitan ramps drinking vinegar venmo keytar,
-                humblebrag VHS post-ironic tacos godard pour-over.
-              </p>
-            </div>
-          )}
+    <Navbar setSelectedOption={setSelectedOption} />
+        <main>
+        <main>{renderContent()}</main>
       </main>
     
   </body>

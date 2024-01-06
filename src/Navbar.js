@@ -1,6 +1,6 @@
 import React from "react";
 import LogoSVG from './logo.js'
-const Navbar = (props) => {
+const Navbar = ({ setSelectedOption }) => {  
   
     return (
       <>
@@ -12,7 +12,7 @@ const Navbar = (props) => {
               <LogoSVG />
             </a>
           </li>
-          <li className="nav-item" onClick={() => props.toggleHomeContent()}>
+          <li className="nav-item" id='home' onClick={() => setSelectedOption("home")}>
             <a href="#" className="nav-link" name="home">
               <svg
                 aria-hidden="true"
@@ -40,7 +40,7 @@ const Navbar = (props) => {
               <span className="link-text">Home</span>
             </a>
           </li>
-          <li className="nav-item">
+          <li className="nav-item" id='products' onClick={() => setSelectedOption("products")}>
             <a href="#" className="nav-link">
             <svg                
                 aria-hidden="true"
@@ -66,7 +66,7 @@ const Navbar = (props) => {
               <span className="link-text">Let's Automate</span>
             </a>
           </li>
-          <li className="nav-item">
+          <li className="nav-item" id='shop' onClick={() => setSelectedOption("shop")}>
             <a href="#" className="nav-link">
               <svg
                 aria-hidden="true"
@@ -92,7 +92,7 @@ const Navbar = (props) => {
               <span className="link-text">Shopping Cart</span>
             </a>
           </li>
-          <li className="nav-item">
+          <li className="nav-item" id='contact' onClick={() => setSelectedOption("contact")}>
             <a href="#" className="nav-link">
               <svg
                 aria-hidden="true"
@@ -115,7 +115,7 @@ const Navbar = (props) => {
                   ></path>
                 </g>
               </svg>
-              <span className="link-text">Shuttle</span>
+              <span className="link-text">Contact</span>
             </a>
           </li>
           <li className="nav-item" id="themeButton">
