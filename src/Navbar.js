@@ -1,7 +1,6 @@
 import React from "react";
 import LogoSVG from './logo.js'
-const Navbar = (props) => {
-  
+const Navbar = ({ setSelectedOption }) => {  
     return (
       <>
       <nav className="navbar">
@@ -12,7 +11,7 @@ const Navbar = (props) => {
               <LogoSVG />
             </a>
           </li>
-          <li className="nav-item" onClick={() => props.toggleCatContent()}>
+          <li className="nav-item" id='home' onClick={() => setSelectedOption("home")}>
             <a href="#" className="nav-link" name="home">
               <svg
                 aria-hidden="true"
@@ -40,7 +39,7 @@ const Navbar = (props) => {
               <span className="link-text">Home</span>
             </a>
           </li>
-          <li className="nav-item">
+          <li className="nav-item" id='products' onClick={() => setSelectedOption("products")}>
             <a href="#" className="nav-link">
             <svg
               xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px">
@@ -51,34 +50,12 @@ const Navbar = (props) => {
                 <path data-name="Path" d="M69.4,2.7a3,3,0,0,0-4.2,0L53,14.9l-.4.5v.2l-.2.3v.6a3,3,0,0,0-.1.6h0a3,3,0,0,0,.1.6v.6l.2.3v.2l.4.5L65.2,31.3A3,3,0,0,0,69.4,27l-7-7H80.1a5,5,0,0,1,5,5V45a3,3,0,0,0,6,0V25a11,11,0,0,0-11-11H62.4l7-7A3,3,0,0,0,69.4,2.7Z"/>
                 <path data-name="Path" d="M47.6,84.7h.1l.2-.4v-.6a3,3,0,0,0,0-1.2v-.6l-.2-.4h-.1l-.4-.5L35.1,68.7A3,3,0,0,0,30.8,73l7,7H20.1a5,5,0,0,1-5-5V55a3,3,0,0,0-6,0V75a11,11,0,0,0,11,11H37.9l-7,7a3,3,0,1,0,4.2,4.2L47.2,85.1Z"/>
               </g>
+
             </svg>
-              {/* <svg
-                aria-hidden="true"
-                focusable="false"
-                data-prefix="fad"
-                data-icon="alien-monster"
-                role="img"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 576 512"
-                className="svg-inline--fa fa-automate fa-w-18 fa-9x"
-              >
-                <g className="fa-group">
-                  <path
-                    fill="currentColor"
-                    d="M320 0c17.7 0 32 14.3 32 32V96H472c39.8 0 72 32.2 72 72V440c0 39.8-32.2 72-72 72H168c-39.8 0-72-32.2-72-72V168c0-39.8 32.2-72 72-72H288V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H208zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H304zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H400zM264 256a40 40 0 1 0 -80 0 40 40 0 1 0 80 0zm152 40a40 40 0 1 0 0-80 40 40 0 1 0 0 80zM48 224H64V416H48c-26.5 0-48-21.5-48-48V272c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H576V224h16z"
-                    className="fa-secondary"
-                  ></path>
-                  <path
-                    fill="currentColor"
-                    d="M320 0c17.7 0 32 14.3 32 32V96H472c39.8 0 72 32.2 72 72V440c0 39.8-32.2 72-72 72H168c-39.8 0-72-32.2-72-72V168c0-39.8 32.2-72 72-72H288V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H208zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H304zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H400zM264 256a40 40 0 1 0 -80 0 40 40 0 1 0 80 0zm152 40a40 40 0 1 0 0-80 40 40 0 1 0 0 80zM48 224H64V416H48c-26.5 0-48-21.5-48-48V272c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H576V224h16z"
-                    className="fa-primary"
-                  ></path>
-                </g>
-              </svg> */}
               <span className="link-text">Let's Automate</span>
             </a>
           </li>
-          <li className="nav-item">
+          <li className="nav-item" id='shop' onClick={() => setSelectedOption("shop")}>
             <a href="#" className="nav-link">
               <svg
                 aria-hidden="true"
@@ -106,7 +83,7 @@ const Navbar = (props) => {
               <span className="link-text">Space</span>
             </a>
           </li>
-          <li className="nav-item">
+          <li className="nav-item" id='contact' onClick={() => setSelectedOption("contact")}>
             <a href="#" className="nav-link">
               <svg
                 aria-hidden="true"

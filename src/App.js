@@ -7,12 +7,22 @@ import Fader from "./Fader";
 
 export default function App() {
 
-  const [showCatContent, setShowCatContent] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("home");
 
-  const toggleCatContent = () => {
-    setShowCatContent(!showCatContent);
+  const renderContent = () => {
+    switch (selectedOption) {
+      case "home":
+        return <Fader text="Hello Home"></Fader>;        
+      case "products":
+        return <Fader text="Hello Products"></Fader>;        
+      case "automate":
+        return <Fader text="Hello Automate"></Fader>;        
+      // Add cases for other navbar options
+      default:
+        return null;
+    }
   };
-  console.log(showCatContent)
+  
   return (
     <html><head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,23 +34,19 @@ export default function App() {
       />
     </head>
     <body>
-      <Navbar toggleCatContent={toggleCatContent} />
-      <main>
-       {showCatContent ? (
-          <Fader text="Hello React"></Fader>          
-        ) : (
-            <div>
-              <h1>CSS is Cool</h1>
-              <p>
-                I'm baby kale chips affogato ennui lumbersexual, williamsburg
-                paleo quinoa iceland normcore tumeric. Kitsch coloring book
-                retro, seitan schlitz tattooed biodiesel vexillologist neutra.
-                Synth mumblecore deep v, umami selfies normcore gluten-free
-                snackwave. Seitan ramps drinking vinegar venmo keytar,
-                humblebrag VHS post-ironic tacos godard pour-over.
-              </p>
-            </div>
-          )}
+    <Navbar setSelectedOption={setSelectedOption} />
+        <main>
+          <div>
+            <h1>CSS is Cool</h1>
+            <p>
+              I'm baby kale chips affogato ennui lumbersexual, williamsburg
+              paleo quinoa iceland normcore tumeric. Kitsch coloring book
+              retro, seitan schlitz tattooed biodiesel vexillologist neutra.
+              Synth mumblecore deep v, umami selfies normcore gluten-free
+              snackwave. Seitan ramps drinking vinegar venmo keytar,
+              humblebrag VHS post-ironic tacos godard pour-over.
+            </p>
+          </div>
       </main>
     
   </body>
