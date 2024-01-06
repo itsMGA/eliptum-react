@@ -42,7 +42,17 @@ const Navbar = (props) => {
           </li>
           <li className="nav-item">
             <a href="#" className="nav-link">
-              <svg
+            <svg
+              xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px">
+              <title>38</title>
+              <g data-name="Group">
+                <path data-name="Compound Path" d="M41.1,38.9a5,5,0,0,0,5-5V13.1a5,5,0,0,0-5-5H7.3a5,5,0,0,0-5,5V33.9a5,5,0,0,0,5,5H21.2v2.5H16.4a3,3,0,0,0,0,6H32.1a3,3,0,0,0,0-6H27.2V38.9Zm-32.8-6V14.1H40.1V32.9H8.3Z"/>
+                <path data-name="Compound Path" d="M86.2,73.9a12.6,12.6,0,1,0-16.8,0,19.9,19.9,0,0,0-11.5,18v1.7a3,3,0,0,0,3,3H94.7a3,3,0,0,0,3-3V91.9A19.9,19.9,0,0,0,86.2,73.9Zm-8.4-16a6.6,6.6,0,1,1-6.6,6.6A6.6,6.6,0,0,1,77.8,57.9ZM64,90.5a13.9,13.9,0,0,1,27.6,0Z"/>
+                <path data-name="Path" d="M69.4,2.7a3,3,0,0,0-4.2,0L53,14.9l-.4.5v.2l-.2.3v.6a3,3,0,0,0-.1.6h0a3,3,0,0,0,.1.6v.6l.2.3v.2l.4.5L65.2,31.3A3,3,0,0,0,69.4,27l-7-7H80.1a5,5,0,0,1,5,5V45a3,3,0,0,0,6,0V25a11,11,0,0,0-11-11H62.4l7-7A3,3,0,0,0,69.4,2.7Z"/>
+                <path data-name="Path" d="M47.6,84.7h.1l.2-.4v-.6a3,3,0,0,0,0-1.2v-.6l-.2-.4h-.1l-.4-.5L35.1,68.7A3,3,0,0,0,30.8,73l7,7H20.1a5,5,0,0,1-5-5V55a3,3,0,0,0-6,0V75a11,11,0,0,0,11,11H37.9l-7,7a3,3,0,1,0,4.2,4.2L47.2,85.1Z"/>
+              </g>
+            </svg>
+              {/* <svg
                 aria-hidden="true"
                 focusable="false"
                 data-prefix="fad"
@@ -64,8 +74,8 @@ const Navbar = (props) => {
                     className="fa-primary"
                   ></path>
                 </g>
-              </svg>
-              <span className="link-text">Start\nAutomating</span>
+              </svg> */}
+              <span className="link-text">Let's Automate</span>
             </a>
           </li>
           <li className="nav-item">
