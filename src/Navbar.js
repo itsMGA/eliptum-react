@@ -1,5 +1,7 @@
 import React from "react";
-import LogoSVG from './logo.js'
+import LogoSVG from './logo.js';
+import { toggleTheme } from './theme.js'; 
+
 const Navbar = ({ setSelectedOption }) => {  
   
     return (
@@ -118,7 +120,7 @@ const Navbar = ({ setSelectedOption }) => {
               <span className="link-text">Contact</span>
             </a>
           </li>
-          <li className="nav-item" id="themeButton">
+          <li className="nav-item" id="themeButton" onClick={() => toggleTheme()}>
             <a href="#" className="nav-link">
               <svg
                 id="lightIcon"
@@ -129,7 +131,8 @@ const Navbar = ({ setSelectedOption }) => {
                 role="img"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512"
-                className="svg-inline--fa fa-moon-stars fa-w-16 fa-7x theme-icon">
+                className="theme-icon svg-inline--fa fa-moon-stars fa-w-16 fa-7x"
+              >
                 <g className="fa-group">
                   <path
                     fill="currentColor"
@@ -152,7 +155,7 @@ const Navbar = ({ setSelectedOption }) => {
                 role="img"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512"
-                className="svg-inline--fa fa-sun fa-w-16 fa-7x theme-icon"
+                className="theme-icon svg-inline--fa fa-sun fa-w-16 fa-7x"
               >
                 <g className="fa-group">
                   <path
@@ -176,7 +179,7 @@ const Navbar = ({ setSelectedOption }) => {
                 role="img"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 576 512"
-                className="svg-inline--fa fa-sunglasses fa-w-18 fa-7x theme-icon"
+                className="theme-icon svg-inline--fa fa-sunglasses fa-w-18 fa-7x"
               >
                 <g className="fa-group">
                   <path

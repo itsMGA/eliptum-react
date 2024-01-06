@@ -25,7 +25,8 @@ export default function App() {
   };
   
   return (
-    <html><head>
+    <html>
+      <head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <script defer src="theme.js"></script>
       <link rel="stylesheet" href="style.css" />
