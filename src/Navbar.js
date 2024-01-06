@@ -1,6 +1,10 @@
 import React from "react";
-import LogoSVG from './logo.js'
+
+import LogoSVG from './logo.js';
+import { toggleTheme } from './theme.js'; 
+
 const Navbar = ({ setSelectedOption }) => {  
+  
     return (
       <>
       <nav className="navbar">
@@ -17,7 +21,7 @@ const Navbar = ({ setSelectedOption }) => {
                 aria-hidden="true"
                 focusable="false"
                 data-prefix="fad"
-                data-icon="cat"
+                data-icon="home"
                 role="img"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 576 512"
@@ -41,16 +45,26 @@ const Navbar = ({ setSelectedOption }) => {
           </li>
           <li className="nav-item" id='products' onClick={() => setSelectedOption("products")}>
             <a href="#" className="nav-link">
-            <svg
-              xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px">
-              <title>38</title>
+            <svg                
+                aria-hidden="true"
+                focusable="false"
+                data-prefix="fad"
+                data-icon="products"
+                role="img"
+                className="svg-inline--fa fa-automate fa-w-18 fa-9x"
+                xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px"
+              >
               <g data-name="Group">
-                <path data-name="Compound Path" d="M41.1,38.9a5,5,0,0,0,5-5V13.1a5,5,0,0,0-5-5H7.3a5,5,0,0,0-5,5V33.9a5,5,0,0,0,5,5H21.2v2.5H16.4a3,3,0,0,0,0,6H32.1a3,3,0,0,0,0-6H27.2V38.9Zm-32.8-6V14.1H40.1V32.9H8.3Z"/>
-                <path data-name="Compound Path" d="M86.2,73.9a12.6,12.6,0,1,0-16.8,0,19.9,19.9,0,0,0-11.5,18v1.7a3,3,0,0,0,3,3H94.7a3,3,0,0,0,3-3V91.9A19.9,19.9,0,0,0,86.2,73.9Zm-8.4-16a6.6,6.6,0,1,1-6.6,6.6A6.6,6.6,0,0,1,77.8,57.9ZM64,90.5a13.9,13.9,0,0,1,27.6,0Z"/>
-                <path data-name="Path" d="M69.4,2.7a3,3,0,0,0-4.2,0L53,14.9l-.4.5v.2l-.2.3v.6a3,3,0,0,0-.1.6h0a3,3,0,0,0,.1.6v.6l.2.3v.2l.4.5L65.2,31.3A3,3,0,0,0,69.4,27l-7-7H80.1a5,5,0,0,1,5,5V45a3,3,0,0,0,6,0V25a11,11,0,0,0-11-11H62.4l7-7A3,3,0,0,0,69.4,2.7Z"/>
-                <path data-name="Path" d="M47.6,84.7h.1l.2-.4v-.6a3,3,0,0,0,0-1.2v-.6l-.2-.4h-.1l-.4-.5L35.1,68.7A3,3,0,0,0,30.8,73l7,7H20.1a5,5,0,0,1-5-5V55a3,3,0,0,0-6,0V75a11,11,0,0,0,11,11H37.9l-7,7a3,3,0,1,0,4.2,4.2L47.2,85.1Z"/>
+                <path className="fa-secondary" fill="currentColor" data-name="Compound Path" d="M41.1,38.9a5,5,0,0,0,5-5V13.1a5,5,0,0,0-5-5H7.3a5,5,0,0,0-5,5V33.9a5,5,0,0,0,5,5H21.2v2.5H16.4a3,3,0,0,0,0,6H32.1a3,3,0,0,0,0-6H27.2V38.9Zm-32.8-6V14.1H40.1V32.9H8.3Z"/>
+                <path className="fa-primary" fill="currentColor" data-name="Compound Path" d="M41.1,38.9a5,5,0,0,0,5-5V13.1a5,5,0,0,0-5-5H7.3a5,5,0,0,0-5,5V33.9a5,5,0,0,0,5,5H21.2v2.5H16.4a3,3,0,0,0,0,6H32.1a3,3,0,0,0,0-6H27.2V38.9Zm-32.8-6V14.1H40.1V32.9H8.3Z"/>
+                
+                <path className="fa-secondary" fill="currentColor" data-name="Compound Path" d="M86.2,73.9a12.6,12.6,0,1,0-16.8,0,19.9,19.9,0,0,0-11.5,18v1.7a3,3,0,0,0,3,3H94.7a3,3,0,0,0,3-3V91.9A19.9,19.9,0,0,0,86.2,73.9Zm-8.4-16a6.6,6.6,0,1,1-6.6,6.6A6.6,6.6,0,0,1,77.8,57.9ZM64,90.5a13.9,13.9,0,0,1,27.6,0Z"/>
+                <path className="fa-primary" fill="currentColor" data-name="Compound Path" d="M86.2,73.9a12.6,12.6,0,1,0-16.8,0,19.9,19.9,0,0,0-11.5,18v1.7a3,3,0,0,0,3,3H94.7a3,3,0,0,0,3-3V91.9A19.9,19.9,0,0,0,86.2,73.9Zm-8.4-16a6.6,6.6,0,1,1-6.6,6.6A6.6,6.6,0,0,1,77.8,57.9ZM64,90.5a13.9,13.9,0,0,1,27.6,0Z"/>
+                
+                <path fill="currentColor" data-name="Path" d="M69.4,2.7a3,3,0,0,0-4.2,0L53,14.9l-.4.5v.2l-.2.3v.6a3,3,0,0,0-.1.6h0a3,3,0,0,0,.1.6v.6l.2.3v.2l.4.5L65.2,31.3A3,3,0,0,0,69.4,27l-7-7H80.1a5,5,0,0,1,5,5V45a3,3,0,0,0,6,0V25a11,11,0,0,0-11-11H62.4l7-7A3,3,0,0,0,69.4,2.7Z"/>
+                
+                <path fill="currentColor" data-name="Path" d="M47.6,84.7h.1l.2-.4v-.6a3,3,0,0,0,0-1.2v-.6l-.2-.4h-.1l-.4-.5L35.1,68.7A3,3,0,0,0,30.8,73l7,7H20.1a5,5,0,0,1-5-5V55a3,3,0,0,0-6,0V75a11,11,0,0,0,11,11H37.9l-7,7a3,3,0,1,0,4.2,4.2L47.2,85.1Z"/>
               </g>
-
             </svg>
               <span className="link-text">Let's Automate</span>
             </a>
@@ -61,26 +75,24 @@ const Navbar = ({ setSelectedOption }) => {
                 aria-hidden="true"
                 focusable="false"
                 data-prefix="fad"
-                data-icon="space-station-moon-alt"
+                data-icon="shopping"
                 role="img"
                 xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512 512"
-                className="svg-inline--fa fa-space-station-moon-alt fa-w-16 fa-5x"
+                viewBox="0 0 576 512"
+                className="svg-inline--fa fa-shopping fa-w-16 fa-5x"
               >
-                <g className="fa-group">
+                <g>
                   <path
-                    fill="currentColor"
-                    d="M501.70312,224H448V160H368V96h48V66.67383A246.86934,246.86934,0,0,0,256,8C119.03125,8,8,119.0332,8,256a250.017,250.017,0,0,0,1.72656,28.26562C81.19531,306.76953,165.47656,320,256,320s174.80469-13.23047,246.27344-35.73438A250.017,250.017,0,0,0,504,256,248.44936,248.44936,0,0,0,501.70312,224ZM192,240a80,80,0,1,1,80-80A80.00021,80.00021,0,0,1,192,240ZM384,343.13867A940.33806,940.33806,0,0,1,256,352c-87.34375,0-168.71094-11.46094-239.28906-31.73633C45.05859,426.01953,141.29688,504,256,504a247.45808,247.45808,0,0,0,192-91.0918V384H384Z"
-                    className="fa-secondary"
-                  ></path>
+                  fill="currentColor"
+                  className="fa-secondary"
+                  d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/>
                   <path
-                    fill="currentColor"
-                    d="M256,320c-90.52344,0-174.80469-13.23047-246.27344-35.73438a246.11376,246.11376,0,0,0,6.98438,35.998C87.28906,340.53906,168.65625,352,256,352s168.71094-11.46094,239.28906-31.73633a246.11376,246.11376,0,0,0,6.98438-35.998C430.80469,306.76953,346.52344,320,256,320Zm-64-80a80,80,0,1,0-80-80A80.00021,80.00021,0,0,0,192,240Zm0-104a24,24,0,1,1-24,24A23.99993,23.99993,0,0,1,192,136Z"
-                    className="fa-primary"
-                  ></path>
+                  fill="currentColor" 
+                  className="fa-primary"
+                  d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/>
                 </g>
               </svg>
-              <span className="link-text">Space</span>
+              <span className="link-text">Shopping Cart</span>
             </a>
           </li>
           <li className="nav-item" id='contact' onClick={() => setSelectedOption("contact")}>
@@ -89,29 +101,27 @@ const Navbar = ({ setSelectedOption }) => {
                 aria-hidden="true"
                 focusable="false"
                 data-prefix="fad"
-                data-icon="space-shuttle"
+                data-icon="contact"
                 role="img"
                 xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 640 512"
-                className="svg-inline--fa fa-space-shuttle fa-w-20 fa-5x"
+                viewBox="0 0 512 512"
+                className="svg-inline--fa fa-contact fa-w-20 fa-5x"
               >
                 <g className="fa-group">
                   <path
                     fill="currentColor"
-                    d="M32 416c0 35.35 21.49 64 48 64h16V352H32zm154.54-232h280.13L376 168C243 140.59 222.45 51.22 128 34.65V160h18.34a45.62 45.62 0 0 1 40.2 24zM32 96v64h64V32H80c-26.51 0-48 28.65-48 64zm114.34 256H128v125.35C222.45 460.78 243 371.41 376 344l90.67-16H186.54a45.62 45.62 0 0 1-40.2 24z"
-                    className="fa-secondary"
+                    d="M384 48c8.8 0 16 7.2 16 16V448c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H384zM96 0C60.7 0 32 28.7 32 64V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H96zM240 256a64 64 0 1 0 0-128 64 64 0 1 0 0 128zm-32 32c-44.2 0-80 35.8-80 80c0 8.8 7.2 16 16 16H336c8.8 0 16-7.2 16-16c0-44.2-35.8-80-80-80H208zM512 80c0-8.8-7.2-16-16-16s-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V80zM496 192c-8.8 0-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm16 144c0-8.8-7.2-16-16-16s-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V336z"                    className="fa-secondary"
                   ></path>
                   <path
                     fill="currentColor"
-                    d="M592.6 208.24C559.73 192.84 515.78 184 472 184H186.54a45.62 45.62 0 0 0-40.2-24H32c-23.2 0-32 10-32 24v144c0 14 8.82 24 32 24h114.34a45.62 45.62 0 0 0 40.2-24H472c43.78 0 87.73-8.84 120.6-24.24C622.28 289.84 640 272 640 256s-17.72-33.84-47.4-47.76zM488 296a8 8 0 0 1-8-8v-64a8 8 0 0 1 8-8c31.91 0 31.94 80 0 80z"
-                    className="fa-primary"
+                    d="M384 48c8.8 0 16 7.2 16 16V448c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16V64c0-8.8 7.2-16 16-16H384zM96 0C60.7 0 32 28.7 32 64V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H96zM240 256a64 64 0 1 0 0-128 64 64 0 1 0 0 128zm-32 32c-44.2 0-80 35.8-80 80c0 8.8 7.2 16 16 16H336c8.8 0 16-7.2 16-16c0-44.2-35.8-80-80-80H208zM512 80c0-8.8-7.2-16-16-16s-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V80zM496 192c-8.8 0-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm16 144c0-8.8-7.2-16-16-16s-16 7.2-16 16v64c0 8.8 7.2 16 16 16s16-7.2 16-16V336z"                    className="fa-primary"
                   ></path>
                 </g>
               </svg>
-              <span className="link-text">Shuttle</span>
+              <span className="link-text">Contact</span>
             </a>
           </li>
-          <li className="nav-item" id="themeButton">
+          <li className="nav-item" id="themeButton" onClick={() => toggleTheme()}>
             <a href="#" className="nav-link">
               <svg
                 id="lightIcon"
@@ -122,7 +132,8 @@ const Navbar = ({ setSelectedOption }) => {
                 role="img"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512"
-                className="svg-inline--fa fa-moon-stars fa-w-16 fa-7x theme-icon">
+                className="theme-icon svg-inline--fa fa-moon-stars fa-w-16 fa-7x"
+              >
                 <g className="fa-group">
                   <path
                     fill="currentColor"
@@ -145,7 +156,7 @@ const Navbar = ({ setSelectedOption }) => {
                 role="img"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512"
-                className="svg-inline--fa fa-sun fa-w-16 fa-7x theme-icon"
+                className="theme-icon svg-inline--fa fa-sun fa-w-16 fa-7x"
               >
                 <g className="fa-group">
                   <path
@@ -169,7 +180,7 @@ const Navbar = ({ setSelectedOption }) => {
                 role="img"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 576 512"
-                className="svg-inline--fa fa-sunglasses fa-w-18 fa-7x theme-icon"
+                className="theme-icon svg-inline--fa fa-sunglasses fa-w-18 fa-7x"
               >
                 <g className="fa-group">
                   <path

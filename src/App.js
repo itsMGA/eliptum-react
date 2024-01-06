@@ -12,19 +12,22 @@ export default function App() {
   const renderContent = () => {
     switch (selectedOption) {
       case "home":
-        return <Fader text="Hello Home"></Fader>;        
+
+        return <Fader text="Home"></Fader>;        
       case "products":
-        return <Fader text="Hello Products"></Fader>;        
-      case "automate":
-        return <Fader text="Hello Automate"></Fader>;        
-      // Add cases for other navbar options
+        return <Fader text="Automate </>"></Fader>;        
+      case "shop":
+        return <Fader text="Shoppping Spree"></Fader>;        
+      case "contact":
+        return <Fader text="Hello, we'll be back soon"></Fader>;        
       default:
-        return null;
+        return <Fader text="Home"></Fader>;        
     }
   };
-  
+
   return (
-    <html><head>
+    <html>
+      <head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <script defer src="theme.js"></script>
       <link rel="stylesheet" href="style.css" />
@@ -36,17 +39,7 @@ export default function App() {
     <body>
     <Navbar setSelectedOption={setSelectedOption} />
         <main>
-          <div>
-            <h1>CSS is Cool</h1>
-            <p>
-              I'm baby kale chips affogato ennui lumbersexual, williamsburg
-              paleo quinoa iceland normcore tumeric. Kitsch coloring book
-              retro, seitan schlitz tattooed biodiesel vexillologist neutra.
-              Synth mumblecore deep v, umami selfies normcore gluten-free
-              snackwave. Seitan ramps drinking vinegar venmo keytar,
-              humblebrag VHS post-ironic tacos godard pour-over.
-            </p>
-          </div>
+        <main>{renderContent()}</main>
       </main>
     
   </body>
