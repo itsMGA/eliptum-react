@@ -12,7 +12,7 @@ const Navbar = (props) => {
               <LogoSVG />
             </a>
           </li>
-          <li className="nav-item" onClick={() => props.toggleCatContent()}>
+          <li className="nav-item" onClick={() => props.toggleHomeContent()}>
             <a href="#" className="nav-link" name="home">
               <svg
                 aria-hidden="true"

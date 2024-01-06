@@ -7,12 +7,11 @@ import Fader from "./Fader";
 
 export default function App() {
 
-  const [showCatContent, setShowCatContent] = useState(false);
+  const [showHomeContent, setShowHomeContent] = useState(false);
 
-  const toggleCatContent = () => {
-    setShowCatContent(!showCatContent);
+  const toggleHomeContent = () => {
+    setShowHomeContent(!showHomeContent);
   };
-  console.log(showCatContent)
   return (
     <html><head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,9 +23,9 @@ export default function App() {
       />
     </head>
     <body>
-      <Navbar toggleCatContent={toggleCatContent} />
+      <Navbar toggleHomeContent={toggleHomeContent} />
       <main>
-       {showCatContent ? (
+       {showHomeContent ? (
           <Fader text="Hello React"></Fader>          
         ) : (
             <div>
