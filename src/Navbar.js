@@ -43,8 +43,11 @@ const Navbar = (props) => {
           <li className="nav-item">
             <a href="#" className="nav-link">
               <svg
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 68 85" style="enable-background:new 0 0 68 68;" xml:space="preserve">
+                  xmlns="http://www.w3.org/2000/svg"
+                  version="1.1" x="0px" y="0px"
+                  viewBox="0 0 68 85"
+                  style={{ enableBackground: 'new 0 0 68 68' }}
+                  xmlSpace="preserve">
                 <g>
                   <g>
                     <path className="fa-primary" d="M29.27,3.736H16.451v14.393H29.27V3.736z M20.518,13.826l-2.865,1.404v-1.139l1.307-0.621l-1.307-0.62v-1.139l2.865,1.404    V13.826z M20.518,8.779l-2.865,1.404v-1.14l1.307-0.62l-1.307-0.62v-1.14l2.865,1.404V8.779z M23.148,13.94h-1.832v-0.75h1.832    V13.94z M24.279,8.894h-2.963v-0.75h2.963V8.894z M27.671,13.94h-2.962v-0.75h2.962V13.94z M27.671,8.894H25.84v-0.75h1.831V8.894    z"/>
