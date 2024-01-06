@@ -12,9 +12,10 @@ const bodyClass = document.body.classList;
 bodyClass.add(theme);
 
 export function toggleTheme() {
-  console.log("theme123")
   const current = localStorage.getItem('theme');
   const next = themeMap[current];
+
   bodyClass.replace(current, next);
   localStorage.setItem('theme', next);
 }
+
