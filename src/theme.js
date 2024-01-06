@@ -10,7 +10,7 @@ const theme = localStorage.getItem('theme') || (tmp = Object.keys(themeMap)[0], 
 const bodyClass = document.body.classList;
 bodyClass.add(theme);
 
-function toggleTheme() {
+export function toggleTheme() {
   const current = localStorage.getItem('theme');
   const next = themeMap[current];
 
