@@ -52,15 +52,14 @@
     background-color: black;
   }
 
-  .products-list {
-    max-width: 90%; /* Adjust for responsiveness */
+  /* .products-list {
+    max-width: 90%; 
     margin: 0 auto;
-    padding: 1rem; /* Adjust padding for mobile */
+    padding: 1rem; 
     text-align: center;
     transition: 900ms ease;
-    margin-top: 5rem; /* Adjust spacing for mobile */
-    /* Additional styles for your carousel container */
-  }
+    margin-top: 5rem; 
+  } */
 
   .product-svg {
     width: 80px; /* Adjust for mobile */
