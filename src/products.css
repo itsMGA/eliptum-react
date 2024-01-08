@@ -38,6 +38,42 @@
   }
 
   
+
+.product-svg:hover {
+    transform: scale(1.2); /* Scale up on hover */
+}
+
+
+/* Styles for smaller screens */
+@media only screen and (max-width: 600px) {
+  .products-list .react-multi-carousel-list {
+    display: block; /* Adjust to suit mobile layout */
+  }
+
+  .products-list {
+    max-width: 100%; /* Adjust for responsiveness */
+    margin: 0 auto;
+    padding: 1rem; /* Adjust padding for mobile */
+    text-align: center;
+    transition: 900ms ease;
+    margin-top: 5rem; /* Adjust spacing for mobile */
+    /* Additional styles for your carousel container */
+  }
+
+  .product-svg {
+    width: 80px; /* Adjust for mobile */
+    height: auto; /* Maintain aspect ratio */
+    fill: #3366ff; /* Change the fill color */
+    stroke: #000; /* Change the stroke color */
+    stroke-width: 1; /* Adjust stroke width */
+    transition: all 0.3s ease; /* Add a transition effect */
+    height: 8em; /* Adjust for mobile */
+    object-fit: cover;
+  }
+}
+
+/* Large screens */
+@media only screen and (min-width: 600px) {
   .products-list .react-multi-carousel-list   {
     /* Adjust as needed */
     display: flex;
@@ -66,7 +102,4 @@
     height: 16em;
     object-fit: cover;
 }
-
-.product-svg:hover {
-    transform: scale(1.2); /* Scale up on hover */
 }
