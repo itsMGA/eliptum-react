@@ -43,17 +43,14 @@
     transform: scale(1.2); /* Scale up on hover */
 }
 
-
 /* Styles for smaller screens */
 @media only screen and (max-width: 600px) {
   .products-list .react-multi-carousel-list {
     display: block; /* Adjust to suit mobile layout */
-    justify-content: center;
-    align-items: center;
   }
 
   .products-list {
-    max-width: 100%; /* Adjust for responsiveness */
+    max-width: 90%; /* Adjust for responsiveness */
     margin: 0 auto;
     padding: 1rem; /* Adjust padding for mobile */
     text-align: center;
@@ -69,8 +66,10 @@
     stroke: #000; /* Change the stroke color */
     stroke-width: 1; /* Adjust stroke width */
     transition: all 0.3s ease; /* Add a transition effect */
-    height: 8em; /* Adjust for mobile */
+    height: 12em; /* Adjust for mobile */
     object-fit: cover;
+    margin: 0 auto; /* Center the SVG horizontally */
+    display: block; /* Ensures proper rendering on smaller screens */
   }
 }
 
