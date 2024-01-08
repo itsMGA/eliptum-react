@@ -42,9 +42,11 @@ export default function App() {
 
       case "products":
         return <>
-          <Carousel showDots={true} responsive={responsive}>
-            {product}
-          </Carousel>
+          <div className="products-list">
+            <Carousel showDots={true} responsive={responsive} transitionDuration={}>
+              {product}
+            </Carousel>
+          </div>
         </>
       case "shop":
         return <text text="">Shoppping Spree</text>;     
@@ -71,7 +73,7 @@ export default function App() {
     <Navbar setSelectedOption={setSelectedOption} handleNavbarHover={handleNavbarHover} handleNavbarLeave={handleNavbarLeave} isNavbarExpanded={isNavbarExpanded}/>
 
       <main className={`content ${isNavbarExpanded ? 'shiftContent' : isNavbarExpanded === false ? 'shiftContentBack' : ''}`}>
-          {renderContent()}
+       {renderContent()}
       </main>
     
   </body>
