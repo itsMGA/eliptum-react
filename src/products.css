@@ -46,9 +46,10 @@
 /* Styles for smaller screens */
 @media only screen and (max-width: 600px) {
   .products-list .react-multi-carousel-list {
-    display: flex; /* Adjust to suit mobile layout */
+    display: inline-block; /* Adjust to suit mobile layout */
     justify-content: center;
     align-items: center;
+    background-color: black;
   }
 
   .products-list {
