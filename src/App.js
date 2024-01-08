@@ -47,7 +47,7 @@ export default function App() {
     </head>
     <body>
     <Navbar setSelectedOption={setSelectedOption} handleNavbarHover={handleNavbarHover} handleNavbarLeave={handleNavbarLeave} isNavbarExpanded={isNavbarExpanded}/>
-    <main className={`content ${isNavbarExpanded ? 'shiftContent' : isNavbarExpanded === false ? 'shiftContentBack' : ''}`}>
+    <main className={"content ${isNavbarExpanded ? 'shiftContent' : isNavbarExpanded === false ? 'shiftContentBack' : ''}"}>
                     {renderContent()}
       </main>
     
