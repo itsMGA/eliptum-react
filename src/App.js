@@ -43,7 +43,7 @@ export default function App() {
       case "products":
         return <>
           <div className="products-list">
-            <Carousel showDots={true} responsive={responsive} transitionDuration={}>
+            <Carousel showDots={true} responsive={responsive}>
               {product}
             </Carousel>
           </div>
