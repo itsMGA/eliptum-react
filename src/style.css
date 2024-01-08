@@ -13,6 +13,9 @@
   --bg-primary: #23232e;
   --bg-secondary: #141418;
   --transition-speed: 600ms;
+  --expanded-navbar-size: 16rem;
+  --default-navbar-size: 5rem
+
 }
 
 body {
@@ -186,7 +189,7 @@ main {
   }
 
   .navbar:hover {
-    width: 16rem;
+    width: var(--expanded-navbar-size);;
   }
 
   .navbar:hover .link-text {
@@ -237,4 +240,14 @@ main {
 
 .solar #solarIcon {
   display: block;
+}
+
+.shiftContent {
+  margin-left: var(--expanded-navbar-size);
+  transition: var(--transition-speed);
+}
+
+.shiftContentBack {
+  margin-left: var(--default-navbar-size);
+  transition: var(--transition-speed);
 }

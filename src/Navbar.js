@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import LogoSVG from './logo.js';
 import { toggleTheme } from './theme.js'; 
 
-const Navbar = ({ setSelectedOption }) => {  
-  
+const Navbar = ({ setSelectedOption, handleNavbarHover, handleNavbarLeave, isNavbarExpanded}) => {  
+
     return (
       <>
-      <nav className="navbar">
-        <ul className="navbar-nav">
+    <nav className={isNavbarExpanded ? "navbar expanded" : "navbar"} onMouseEnter={handleNavbarHover} onMouseLeave={handleNavbarLeave}>        
+      <ul className="navbar-nav">
           <li className="logo">
             <a href="#" className="nav-link">
               <span className="link-text logo-text">Eliptum-Tech</span>

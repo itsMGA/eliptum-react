@@ -2,26 +2,36 @@ import React from "react";
 import "./style.css";
 import Navbar from "./Navbar"
 import { useState, useEffect } from "react";
-import Fader from "./Fader";
 
 
 export default function App() {
+  const [isNavbarExpanded, setIsNavbarExpanded] = useState(false);
 
+  const handleNavbarHover = () => {
+    console.log('hovered');
+    setIsNavbarExpanded(true);
+  };
+
+  const handleNavbarLeave = () => {
+    console.log('not hovered');
+    setIsNavbarExpanded(false);
+  };
+  
   const [selectedOption, setSelectedOption] = useState("home");
 
   const renderContent = () => {
     switch (selectedOption) {
       case "home":
 
-        return <Fader text="Home"></Fader>;        
+        return <text className="content" text="">Home</text>;        
       case "products":
-        return <Fader text="Automate </>"></Fader>;        
+        return <text text="">"Automate"</text>;        
       case "shop":
-        return <Fader text="Shoppping Spree"></Fader>;        
+        return <text text="">Shoppping Spree</text>;        
       case "contact":
-        return <Fader text="Hello, we'll be back soon"></Fader>;        
+        return <text text="">Hello, we'll be back soon</text>;        
       default:
-        return <Fader text="Home"></Fader>;        
+        return <text text="">Home</text>;        
     }
   };
 
@@ -37,9 +47,9 @@ export default function App() {
       />
     </head>
     <body>
-    <Navbar setSelectedOption={setSelectedOption} />
-        <main>
-        <main>{renderContent()}</main>
+    <Navbar setSelectedOption={setSelectedOption} handleNavbarHover={handleNavbarHover} handleNavbarLeave={handleNavbarLeave} isNavbarExpanded={isNavbarExpanded}/>
+    <main className={`content ${isNavbarExpanded ? 'shiftContent' : isNavbarExpanded === false ? 'shiftContentBack' : ''}`}>
+                    {renderContent()}
       </main>
     
   </body>
