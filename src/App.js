@@ -29,7 +29,7 @@ export default function App() {
   const product = productData.map((item) => (
     <Product
       name={item.name}
-      url={item.imageurl}
+      svg={item.svg}
       price={item.price}
       description={item.description}
     />

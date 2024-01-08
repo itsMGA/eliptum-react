@@ -22,66 +22,42 @@ export const responsive = {
 export const productData = [
   {
     id: 1,
-    imageurl:
-      "https://images.unsplash.com/photo-1560769629-975ec94e6a86?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    name: "Colorful sneakers",
+    svg: (
+      <>
+      <svg
+          aria-hidden="true"
+          focusable="false"
+          data-prefix="fad"
+          data-icon="angle-double-right"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+          className="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x"
+          >
+          <g className="fa-group">
+              <path
+              fill="currentColor"
+              d="M224 273L88.37 409a23.78 23.78 0 0 1-33.8 0L32 386.36a23.94 23.94 0 0 1 0-33.89l96.13-96.37L32 159.73a23.94 23.94 0 0 1 0-33.89l22.44-22.79a23.78 23.78 0 0 1 33.8 0L223.88 239a23.94 23.94 0 0 1 .1 34z"
+              className="fa-secondary"
+              ></path>
+              <path
+              fill="currentColor"
+              d="M415.89 273L280.34 409a23.77 23.77 0 0 1-33.79 0L224 386.26a23.94 23.94 0 0 1 0-33.89L320.11 256l-96-96.47a23.94 23.94 0 0 1 0-33.89l22.52-22.59a23.77 23.77 0 0 1 33.79 0L416 239a24 24 0 0 1-.11 34z"
+              className="fa-primary"
+              ></path>
+          </g>
+      </svg>
+      </>
+      ),
+      name: "Frontend Automation",
     price: "$19.99",
     description: "Some text about the product..",
-  },
-  {
-    id: 2,
-    imageurl:
-      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZHVjdHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
-    name: "Sport sneakers",
-    price: "$21.99",
-    description: "Some text about the product..",
-  },
-  {
-    id: 3,
-    imageurl:
-      "https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjZ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    name: "iWatch",
-    price: "$99.99",
-    description: "Some text about the product..",
-  },
-  {
-    id: 4,
-    imageurl:
-      "https://images.unsplash.com/photo-1610824352934-c10d87b700cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjl8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    name: "Water Bottle",
-    price: "$14.99",
-    description: "Some text about the product..",
-  },
-  {
-    id: 5,
-    imageurl:
-      "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    name: "Vans sneakers",
-    price: "$38.99",
-    description: "Some text about the product..",
-  },
-  {
-    id: 6,
-    imageurl:
-      "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzV8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    name: "Coco Noir",
-    price: "$149.99",
-    description: "Some text about the product..",
-  },
-  {
-    id: 7,
-    imageurl:
-      "https://images.unsplash.com/photo-1589782182703-2aaa69037b5b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OTJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    name: "Sunglasses",
-    price: "$38.99",
-    description: "Some text about the product..",
-  },
-  {
-    id: 8,
-    imageurl:
-      "https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
-    name: "Dove cream",
-    price: "$49.99",
-    description: "Some text about the product..",
-  },
+  }
+  // ,
+  // {
+  //   id: 2,
+  //   name: "Backend Automation",
+  //   price: "$21.99",
+  //   description: "Some text about the product..",
+  // }
 ];
