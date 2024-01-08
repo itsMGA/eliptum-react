@@ -48,9 +48,6 @@
 @media only screen and (max-width: 600px) {
   .products-list .react-multi-carousel-list {
     display: block; /* Adjust to suit mobile layout */
-  }
-
-  .products-list {
     max-width: 100%; /* Adjust for responsiveness */
     margin: 0 auto;
     padding: 1rem; /* Adjust padding for mobile */
@@ -58,6 +55,10 @@
     transition: 900ms ease;
     margin-top: 5rem; /* Adjust spacing for mobile */
     /* Additional styles for your carousel container */
+  }
+
+  .products-list {
+
   }
 
   .product-svg {
