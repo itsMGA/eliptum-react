@@ -5,8 +5,7 @@
   
   .product--image {
     width: 100%;
-    height: 16em;
-    object-fit: cover;
+
   }
   
   .card {
@@ -38,10 +37,36 @@
     opacity: 0.7;
   }
 
+  
+  .products-list .react-multi-carousel-list   {
+    /* Adjust as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .products-list {
     max-width: 2680px;
     margin: 0 auto;
     padding: 2rem;
     text-align: center;
     transition: 900ms ease;
+    margin-top: 20rem;
+    /* Additional styles for your carousel container */
   }
+
+  .product-svg {
+    width: 100px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    fill: #3366ff; /* Change the fill color */
+    stroke: #000; /* Change the stroke color */
+    stroke-width: 1; /* Adjust stroke width */
+    transition: all 0.3s ease; /* Add a transition effect */
+    /* background-color: black; */
+    height: 16em;
+    object-fit: cover;
+}
+
+.product-svg:hover {
+    transform: scale(1.2); /* Scale up on hover */
+}
