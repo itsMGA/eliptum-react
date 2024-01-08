@@ -35,18 +35,10 @@ export default function App() {
     }
   };
 
-  let mainClassName = 'content';
-  if (isNavbarExpanded) {
-    mainClassName += ' shiftContent';
-  } else if (isNavbarExpanded === false) {
-    mainClassName += ' shiftContentBack';
-  }
-
   return (
     <html>
       <head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <script type="text/javascript" defer src="theme.js"></script>
       <link rel="stylesheet" href="style.css" />
       <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap"
@@ -55,9 +47,9 @@ export default function App() {
     </head>
     <body>
     <Navbar setSelectedOption={setSelectedOption} handleNavbarHover={handleNavbarHover} handleNavbarLeave={handleNavbarLeave} isNavbarExpanded={isNavbarExpanded}/>
-    <main className={mainClassName}>
-        {renderContent()}
-    </main>
+    <main className={`content ${isNavbarExpanded ? 'shiftContent' : isNavbarExpanded === false ? 'shiftContentBack' : ''}`}>
+                    {renderContent()}
+      </main>
     
   </body>
   </html>
