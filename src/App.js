@@ -1,7 +1,13 @@
 import React from "react";
 import "./style.css";
+import "./products.css";
+import Product from "./Product";
 import Navbar from "./Navbar"
 import { useState, useEffect } from "react";
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+import { productData, responsive } from "./product_data";
+
 
 
 export default function App() {
@@ -19,15 +25,30 @@ export default function App() {
   
   const [selectedOption, setSelectedOption] = useState("home");
 
+
+  const product = productData.map((item) => (
+    <Product
+      name={item.name}
+      url={item.imageurl}
+      price={item.price}
+      description={item.description}
+    />
+    ));
+
   const renderContent = () => {
     switch (selectedOption) {
       case "home":
+        return <text text="">Home</text>;  
 
-        return <text className="content" text="">Home</text>;        
       case "products":
-        return <text text="">"Automate"</text>;        
+        return <>
+          <Carousel showDots={true} responsive={responsive}>
+            {product}
+          </Carousel>
+        </>
       case "shop":
-        return <text text="">Shoppping Spree</text>;        
+        return <text text="">Shoppping Spree</text>;     
+
       case "contact":
         return <text text="">Hello, we'll be back soon</text>;        
       default:
@@ -46,9 +67,11 @@ export default function App() {
       />
     </head>
     <body>
+
     <Navbar setSelectedOption={setSelectedOption} handleNavbarHover={handleNavbarHover} handleNavbarLeave={handleNavbarLeave} isNavbarExpanded={isNavbarExpanded}/>
-    <main className={`content ${isNavbarExpanded ? 'shiftContent' : isNavbarExpanded === false ? 'shiftContentBack' : ''}`}>
-                    {renderContent()}
+
+      <main className={`content ${isNavbarExpanded ? 'shiftContent' : isNavbarExpanded === false ? 'shiftContentBack' : ''}`}>
+          {renderContent()}
       </main>
     
   </body>
