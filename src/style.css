@@ -244,10 +244,10 @@ main {
 
 .shiftContent {
   margin-left: var(--expanded-navbar-size);
-  transition: var(--transition-speed);
+  transition: var(--transition-speed) ease;
 }
 
 .shiftContentBack {
   margin-left: var(--default-navbar-size);
-  transition: var(--transition-speed);
+  transition: var(--transition-speed) ease;
 }
