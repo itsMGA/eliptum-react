@@ -23,16 +23,53 @@ export default function App() {
 
   const [selectedOption, setSelectedOption] = useState("home");
 
-  const service = services_data.map((item) => (
-    <Service
-      name={item.name}
-      imageName={item.imageName}
-      className={item.className}
-      desc={item.desc}
-    />
+  const [selectedServiceIndex, setSelectedServiceIndex] = useState(null);
+
+  const [isServiceSelected, setIsServiceSelected] = useState(false);
+
+  const handleServiceClick = (index) => {
+    console.log("Clicked service index:", index); // Add a log to track the index clicked
+
+    if (index >= 0 && index < services_data.length) {
+      // Check if index is within range
+      if (isServiceSelected && selectedServiceIndex === index) {
+        setIsServiceSelected(false); // If already selected, deselect
+        console.log(false);
+      } else {
+        setSelectedServiceIndex(index);
+        setIsServiceSelected(true); // Select the service
+        console.log(true);
+      }
+    } else {
+      console.error("Invalid index or index out of range");
+    }
+  };
+
+  const services = services_data.map((item, index) => (
+    <div key={index} onClick={() => handleServiceClick(index)}>
+      <Service
+        name={item.name}
+        imageName={item.imageName}
+        className={item.className}
+        desc={item.desc}
+      />
+    </div>
   ));
+  const ServiceComponent = ({ item, onClick }) => (
+    <div tabIndex={0} onClick={onClick} style={{ outline: "none" }}>
+      <Service
+        name={item.name}
+        imageName={item.imageName}
+        className={item.className}
+        desc={item.desc}
+      />
+    </div>
+  );
 
   const renderContent = () => {
+    const selectedService = isServiceSelected
+      ? services_data[selectedServiceIndex]
+      : null;
     switch (selectedOption) {
       case "home":
         return <text text="">Home</text>;
@@ -45,8 +82,8 @@ export default function App() {
                 rel="stylesheet"
                 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
                 integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-                crossorigin="anonymous"
-                referrerpolicy="no-referrer"
+                crossOrigin="anonymous"
+                referrerPolicy="no-referrer"
               />
               <section className="section services-section" id="services">
                 <div className="container">
@@ -61,17 +98,53 @@ export default function App() {
                       </div>
                     </div>
                   </div>
-                  <div className="row services-row">{service}</div>
+                  <div className="row services-row">
+                    {isServiceSelected ? (
+                      <div
+                        key={selectedServiceIndex}
+                        onClick={() => handleServiceClick(selectedServiceIndex)}
+                      >
+                        <Service
+                          name={services_data[selectedServiceIndex].name}
+                          imageName={
+                            services_data[selectedServiceIndex].imageName
+                          }
+                          className={
+                            services_data[selectedServiceIndex].className
+                          }
+                          desc={services_data[selectedServiceIndex].desc}
+                        />
+                      </div>
+                    ) : (
+                      services_data.map((item, index) => (
+                        <div
+                          key={index}
+                          tabIndex={0}
+                          onClick={() => handleServiceClick(index)}
+                          style={{ outline: "none" }}
+                        >
+                          <Service
+                            name={item.name}
+                            imageName={item.imageName}
+                            className={item.className}
+                            desc={item.desc}
+                          />
+                        </div>
+                      ))
+                    )}
+                  </div>
                 </div>
               </section>
             </div>
           </>
         );
+
       case "shop":
-        return <text text="">Shoppping Spree</text>;
+        return <text text="">Shopping Spree</text>;
 
       case "contact":
         return <text text="">Hello, we'll be back soon</text>;
+
       default:
         return <text text="">Home</text>;
     }
