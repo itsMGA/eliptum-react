@@ -55,9 +55,8 @@ export default function App() {
                       <div className="section-title">
                         <h2>Services</h2>
                         <p>
-                          I design and develop services for customers of all
-                          sizes, specializing in creating stylish, modern
-                          websites
+                          Enhance efficiency, reliability, and quality with
+                          automated test solutions.
                         </p>
                       </div>
                     </div>
