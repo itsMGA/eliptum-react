@@ -28,6 +28,14 @@
     "eject": {
       "name": "eject",
       "command": "npm run eject"
+    },
+    "npm i --save @fortawesome/react-native-fontawesome @fortawesome/fontawesome-svg-core react-native-svg": {
+      "name": "npm i --save @fortawesome/react-native-fontawesome @fortawesome/fontawesome-svg-core react-native-svg",
+      "command": "npm i --save @fortawesome/react-native-fontawesome @fortawesome/fontawesome-svg-core react-native-svg"
+    },
+    "npm i --save @fortawesome/free-solid-svg-icons": {
+      "name": "npm i --save @fortawesome/free-solid-svg-icons",
+      "command": "npm i --save @fortawesome/free-solid-svg-icons"
     }
   }
 }

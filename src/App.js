@@ -1,12 +1,12 @@
 import React from "react";
 import "./style.css";
-import "./products.css";
-import Product from "./Product";
+import "./services-style.css";
+import Service from "./Service";
 import Navbar from "./Navbar";
 import { useState, useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { productData, responsive } from "./product_data";
+import { services_data } from "./services_data";
 
 export default function App() {
   const [isNavbarExpanded, setIsNavbarExpanded] = useState(false);
@@ -23,12 +23,12 @@ export default function App() {
 
   const [selectedOption, setSelectedOption] = useState("home");
 
-  const product = productData.map((item) => (
-    <Product
+  const service = services_data.map((item) => (
+    <Service
       name={item.name}
-      svg={item.svg}
-      price={item.price}
-      description={item.description}
+      imageName={item.imageName}
+      className={item.className}
+      desc={item.desc}
     />
   ));
 
@@ -37,15 +37,17 @@ export default function App() {
       case "home":
         return <text text="">Home</text>;
 
-      case "products":
+      case "services":
         return (
           <>
             <div>
               <link
-                href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
                 rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+                integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+                crossorigin="anonymous"
+                referrerpolicy="no-referrer"
               />
-
               <section className="section services-section" id="services">
                 <div className="container">
                   <div className="row">
@@ -60,54 +62,7 @@ export default function App() {
                       </div>
                     </div>
                   </div>
-                  <div className="row services-row">
-                    <div className="feature-container">
-                      <div className="feature-box-1 frontend">
-                        <div className="icon">
-                          <i className="fa fa-desktop"></i>
-                        </div>
-                        <div className="feature-content">
-                          <h5>Frontend</h5>
-                          <p>
-                            I design and develop services for customers of all
-                            sizes, specializing in creating stylish, modern
-                            websites.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="feature-container">
-                      <div className="feature-box-1 backend">
-                        <div className="icon">
-                          <i className="fa fa-user"></i>
-                        </div>
-                        <div className="feature-content">
-                          <h5>Backend</h5>
-                          <p>
-                            I design and develop services for customers of all
-                            sizes, specializing in creating stylish, modern
-                            websites.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="feature-container">
-                      <div className="feature-box-1 integration">
-                        <div className="icon">
-                          <i className="fa fa-comment"></i>
-                        </div>
-                        <div className="feature-content">
-                          <h5>Integration</h5>
-                          <p>
-                            I design and develop services for customers of all
-                            sizes, specializing in creating stylish, modern
-                            websites.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <div className="row services-row">{service}</div>
                 </div>
               </section>
             </div>
