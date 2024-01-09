@@ -11,7 +11,7 @@ export const services_data = [
     name: "Backend Automation",
     className: "backend",
     price: "$19.99",
-    desc: "Automating backend tests ensures efficiency, reliability, comprehensive coverage, streamlined regression testing, and robust functionality, guaranteeing error-free backend operations.",
+    desc: "Automated backend tests ensure efficiency, reliability, comprehensive coverage, streamlined regression testing, and robust functionality, guaranteeing error-free backend operations.",
   },
   {
     imageName: "fa-solid fa-sitemap",
