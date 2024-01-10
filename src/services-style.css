@@ -143,12 +143,6 @@
   padding-left: 15px;
 }
 
-.service-item {
+.selected-service.active {
   opacity: 1;
-  transition: opacity 0.3s ease-in-out; /* Adjust duration and timing function as needed */
-}
-
-.service-hidden {
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out; /* Adjust duration and timing function as needed */
 }

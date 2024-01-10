@@ -4,7 +4,6 @@ import "./services-style.css";
 import Service from "./Service";
 import Navbar from "./Navbar";
 import { useState, useEffect } from "react";
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { services_data } from "./services_data";
 
@@ -55,21 +54,8 @@ export default function App() {
       />
     </div>
   ));
-  const ServiceComponent = ({ item, onClick }) => (
-    <div tabIndex={0} onClick={onClick} style={{ outline: "none" }}>
-      <Service
-        name={item.name}
-        imageName={item.imageName}
-        className={item.className}
-        desc={item.desc}
-      />
-    </div>
-  );
 
   const renderContent = () => {
-    const selectedService = isServiceSelected
-      ? services_data[selectedServiceIndex]
-      : null;
     switch (selectedOption) {
       case "home":
         return <text text="">Home</text>;
@@ -85,56 +71,32 @@ export default function App() {
                 crossOrigin="anonymous"
                 referrerPolicy="no-referrer"
               />
-              <section className="section services-section" id="services">
-                <div className="container">
-                  <div className="row">
-                    <div className="page-header">
-                      <div className="section-title">
-                        <h2>Services</h2>
-                        <p>
-                          Enhance efficiency, reliability, and quality with
-                          automated test solutions.
-                        </p>
+              {!isServiceSelected ? (
+                <section className="section services-section" id="services">
+                  <div className="container">
+                    <div className="row">
+                      <div className="page-header">
+                        <div className="section-title">
+                          <h2>Services</h2>
+                          <p>
+                            Enhance efficiency, reliability, and quality with
+                            automated test solutions.
+                          </p>
+                        </div>
                       </div>
                     </div>
+                    <div className="row services-row">{services}</div>
                   </div>
-                  <div className="row services-row">
-                    {isServiceSelected ? (
-                      <div
-                        key={selectedServiceIndex}
-                        onClick={() => handleServiceClick(selectedServiceIndex)}
-                      >
-                        <Service
-                          name={services_data[selectedServiceIndex].name}
-                          imageName={
-                            services_data[selectedServiceIndex].imageName
-                          }
-                          className={
-                            services_data[selectedServiceIndex].className
-                          }
-                          desc={services_data[selectedServiceIndex].desc}
-                        />
-                      </div>
-                    ) : (
-                      services_data.map((item, index) => (
-                        <div
-                          key={index}
-                          tabIndex={0}
-                          onClick={() => handleServiceClick(index)}
-                          style={{ outline: "none" }}
-                        >
-                          <Service
-                            name={item.name}
-                            imageName={item.imageName}
-                            className={item.className}
-                            desc={item.desc}
-                          />
-                        </div>
-                      ))
-                    )}
-                  </div>
+                </section>
+              ) : (
+                <div
+                  className={`selected-service ${
+                    isServiceSelected ? "active" : ""
+                  }`}
+                >
+                  {services[selectedServiceIndex]}
                 </div>
-              </section>
+              )}
             </div>
           </>
         );
