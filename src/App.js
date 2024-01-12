@@ -6,6 +6,7 @@ import Navbar from "./Navbar";
 import { useState, useEffect } from "react";
 import "react-multi-carousel/lib/styles.css";
 import { services_data } from "./services_data";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function App() {
   const [isNavbarExpanded, setIsNavbarExpanded] = useState(false);
@@ -34,6 +35,7 @@ export default function App() {
       if (isServiceSelected && selectedServiceIndex === index) {
         setIsServiceSelected(false); // If already selected, deselect
         console.log(false);
+        setSelectedServiceIndex(null);
       } else {
         setSelectedServiceIndex(index);
         setIsServiceSelected(true); // Select the service
@@ -45,14 +47,26 @@ export default function App() {
   };
 
   const services = services_data.map((item, index) => (
-    <div key={index} onClick={() => handleServiceClick(index)}>
+    <motion.div
+      layout
+      initial={{ opacity: 0 }}
+      animate={{
+        opacity: 1,
+      }}
+      exit={{ opacity: 0 }}
+      transition={{ layout: { type: "spring", stiffness: 100, damping: 10 } }}
+      onClick={() => handleServiceClick(index)}
+      key={index}
+    >
       <Service
         name={item.name}
         imageName={item.imageName}
         className={item.className}
         desc={item.desc}
+        selectedServiceIndex={selectedServiceIndex}
+        index={index} // Add this line
       />
-    </div>
+    </motion.div>
   ));
 
   const renderContent = () => {
@@ -71,32 +85,43 @@ export default function App() {
                 crossOrigin="anonymous"
                 referrerPolicy="no-referrer"
               />
-              {!isServiceSelected ? (
-                <section className="section services-section" id="services">
-                  <div className="container">
-                    <div className="row">
-                      <div className="page-header">
-                        <div className="section-title">
-                          <h2>Services</h2>
-                          <p>
-                            Enhance efficiency, reliability, and quality with
-                            automated test solutions.
-                          </p>
+              <section className="section services-section" id="services">
+                <div className="container">
+                  <AnimatePresence>
+                    {selectedServiceIndex === null && (
+                      <motion.div
+                        initial={{ opacity: 1, height: "auto" }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="row"
+                      >
+                        <div className="page-header">
+                          <div className="section-title">
+                            <h2>Services</h2>
+                            <p>
+                              Enhance efficiency, reliability, and quality with
+                              automated test solutions.
+                            </p>
+                          </div>
                         </div>
-                      </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                  <AnimatePresence>
+                    <div
+                      className={`row services-row ${
+                        selectedServiceIndex !== null ? "ss-services-row" : ""
+                      }`}
+                    >
+                      {" "}
+                      {selectedServiceIndex === null
+                        ? services
+                        : services[selectedServiceIndex]}
                     </div>
-                    <div className="row services-row">{services}</div>
-                  </div>
-                </section>
-              ) : (
-                <div
-                  className={`selected-service ${
-                    isServiceSelected ? "active" : ""
-                  }`}
-                >
-                  {services[selectedServiceIndex]}
+                  </AnimatePresence>
                 </div>
-              )}
+              </section>
             </div>
           </>
         );
