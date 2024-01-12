@@ -85,10 +85,7 @@ export default function App() {
                 crossOrigin="anonymous"
                 referrerPolicy="no-referrer"
               />
-              <section className="" id="services"                       className={`row services-row${
-                        selectedServiceIndex !== null ? " ss-services-row" : ""
-                      }`}>
-                
+              <section>
                 <div className="container">
                   <AnimatePresence>
                     {selectedServiceIndex === null && (
