@@ -7,10 +7,6 @@
   justify-content: center;
 }
 
-.selected-serv-section {
-  padding-top: 0;
-}
-
 .services-desc {
   align-self: center;
 }
@@ -81,6 +77,21 @@
   transition: ease all 0.35s;
 }
 
+.card-selected .feature-box-1 {
+  /* height: 90%;
+  width: 90%; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #771cd3;
+  border-radius: 80px;
+  padding: 40px 40px 40px 40px;
+
+  background-color: white; /* Set background to white */
+  box-shadow: 0 0 20px 15px rgb(138, 130, 216); /* Glowing green shadow */
+  border-radius: 110px; /* Adjust as needed */
+}
+
 .feature-box-1 .icon {
   width: 70px;
   height: 70px;
@@ -89,11 +100,12 @@
   color: #ffffff;
   text-align: center;
   border-radius: 50%;
-  margin-bottom: 22px;
+  /* margin-bottom: 22px; */
   font-size: 27px;
 }
 
 .feature-box-1 .icon i {
+  font-size: 30px;
   line-height: 70px;
 }
 
@@ -144,8 +156,14 @@
 }
 
 .section {
-  padding: 100px 0;
+  padding-top: 4rem;
   position: relative;
+  transition: padding-top 0.5s ease; /* Adjust the duration and timing function as needed */
+  /* other styles if any */
+}
+
+.selected-serv-section.section {
+  padding-top: 0;
 }
 
 .section-title {

@@ -85,7 +85,11 @@ export default function App() {
                 crossOrigin="anonymous"
                 referrerPolicy="no-referrer"
               />
-              <section>
+              <section
+                className={`section service-section${
+                  selectedServiceIndex !== null ? " selected-serv-section" : ""
+                }`}
+              >
                 <div className="container">
                   <AnimatePresence>
                     {selectedServiceIndex === null && (
