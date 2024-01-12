@@ -14,11 +14,13 @@
   justify-content: center;
   gap: 1rem;
   height: 100%;
+  width: 100%;
 }
 
-.ss-services-row {
-  align-self: center;
-}
+/* .container:has(.ss-services-row) {
+  display: flex;
+  align-items: center;
+} */
 
 .feature-container {
   max-width: 25rem;
@@ -26,9 +28,26 @@
 }
 
 .card-selected {
-  /* align-self: flex-start;
+  transform: scale(0.8); /* Shrink the card */
+  width: 90%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  outline: auto; */
+  text-align: center;
+}
+
+.card-selected .feature-box-1 .icon {
+  transform: scale(
+    1.25
+  ); /* Counteract the shrink to maintain the icon's size */
+}
+
+.card-selected .feature-box-1 .icon i {
+  transform: scale(
+    1.25
+  ); /* Apply the same scale to the <i> element if necessary */
 }
 
 /* Feature Box

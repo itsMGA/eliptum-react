@@ -1,19 +1,32 @@
 import React from "react";
 
-export default function Service(props) {
-  const combinedClassName = `feature-container ${
-    props.selectedServiceIndex !== null ? "card-selected" : ""
+export default function Service({
+  name,
+  imageName,
+  className,
+  desc,
+  selectedServiceIndex,
+  index,
+}) {
+  const isSelected = selectedServiceIndex === index; // Check if the service is selected
+
+  // Use the `isSelected` variable to conditionally apply a class or style
+  const combinedClassName = `feature-container ${className} ${
+    isSelected ? "card-selected" : ""
   }`;
+
   return (
     <div className={combinedClassName}>
-      <div className={`feature-box-1 ${props.className}`}>
+      <div className={`feature-box-1 ${className}`}>
         <div className="icon">
-          <i className={props.imageName}></i>
+          <i className={imageName}></i>
         </div>
-        <div className="feature-content">
-          <h5>{props.name}</h5>
-          <p>{props.desc}</p>
-        </div>
+        {!isSelected && ( // Conditionally render the text
+          <div className="feature-content">
+            <h5>{name}</h5>
+            <p>{desc}</p>
+          </div>
+        )}
       </div>
     </div>
   );

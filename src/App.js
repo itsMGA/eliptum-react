@@ -48,9 +48,11 @@ export default function App() {
 
   const services = services_data.map((item, index) => (
     <motion.div
-      layout // Add this line
+      layout
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      animate={{
+        opacity: 1,
+      }}
       exit={{ opacity: 0 }}
       transition={{ layout: { type: "spring", stiffness: 100, damping: 10 } }}
       onClick={() => handleServiceClick(index)}
@@ -62,6 +64,7 @@ export default function App() {
         className={item.className}
         desc={item.desc}
         selectedServiceIndex={selectedServiceIndex}
+        index={index} // Add this line
       />
     </motion.div>
   ));
@@ -85,29 +88,25 @@ export default function App() {
               <section className="section services-section" id="services">
                 <div className="container">
                   <AnimatePresence>
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.5 }}
-                      key={selectedServiceIndex}
-                    >
-                      {selectedServiceIndex !== null ? (
-                        ""
-                      ) : (
-                        <div className="row">
-                          <div className="page-header">
-                            <div className="section-title">
-                              <h2>Services</h2>
-                              <p>
-                                Enhance efficiency, reliability, and quality
-                                with automated test solutions.
-                              </p>
-                            </div>
+                    {selectedServiceIndex === null && (
+                      <motion.div
+                        initial={{ opacity: 1, height: "auto" }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="row"
+                      >
+                        <div className="page-header">
+                          <div className="section-title">
+                            <h2>Services</h2>
+                            <p>
+                              Enhance efficiency, reliability, and quality with
+                              automated test solutions.
+                            </p>
                           </div>
                         </div>
-                      )}
-                    </motion.div>
+                      </motion.div>
+                    )}
                   </AnimatePresence>
                   <AnimatePresence>
                     <div
