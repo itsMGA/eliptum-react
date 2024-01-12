@@ -36,6 +36,14 @@
     "npm i --save @fortawesome/free-solid-svg-icons": {
       "name": "npm i --save @fortawesome/free-solid-svg-icons",
       "command": "npm i --save @fortawesome/free-solid-svg-icons"
+    },
+    "framer-motion": {
+      "name": "framer-motion",
+      "command": "framer-motion"
+    },
+    "npm install framer-motion": {
+      "name": "npm install framer-motion",
+      "command": "npm install framer-motion"
     }
   }
 }
