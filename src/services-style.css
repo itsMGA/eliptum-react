@@ -4,7 +4,15 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  /* justify-content: center; */
+  justify-content: center;
+}
+
+.selected-serv-section {
+  padding-top: 0;
+}
+
+.services-desc {
+  align-self: center;
 }
 
 .services-row {
@@ -12,9 +20,10 @@
   flex-wrap: wrap;
   align-content: flex-start;
   justify-content: center;
-  gap: 1rem;
+  gap: 2.3rem;
   height: 100%;
   width: 100%;
+  margin-top: 6rem;
 }
 
 /* .container:has(.ss-services-row) {
@@ -28,7 +37,7 @@
 }
 
 .card-selected {
-  transform: scale(0.8); /* Shrink the card */
+  transform: scale(0.8);
   width: 90%;
   height: 95%;
   display: flex;
@@ -39,15 +48,11 @@
 }
 
 .card-selected .feature-box-1 .icon {
-  transform: scale(
-    1.25
-  ); /* Counteract the shrink to maintain the icon's size */
+  transform: scale(1.25);
 }
 
 .card-selected .feature-box-1 .icon i {
-  transform: scale(
-    1.25
-  ); /* Apply the same scale to the <i> element if necessary */
+  transform: scale(1.25);
 }
 
 /* Feature Box
@@ -96,9 +101,11 @@
   color: #20247b;
   font-weight: 600;
 }
+
 .feature-box-1 p {
   margin: 0;
 }
+
 .feature-box-1:after {
   content: "";
   position: absolute;
@@ -115,15 +122,19 @@
   -webkit-transition: ease all 0.35s;
   transition: ease all 0.35s;
 }
+
 .feature-box-1:hover {
   top: -5px;
 }
+
 .feature-box-1:hover h5 {
   color: #ffffff;
 }
+
 .feature-box-1:hover p {
   color: rgba(255, 255, 255, 0.8);
 }
+
 .feature-box-1:hover:after {
   width: 100%;
   height: 100%;
@@ -131,13 +142,16 @@
   left: 0;
   right: auto;
 }
+
 .section {
   padding: 100px 0;
   position: relative;
 }
+
 .section-title {
   padding-bottom: 45px;
 }
+
 .section-title h2 {
   font-weight: 700;
   color: #20247b;

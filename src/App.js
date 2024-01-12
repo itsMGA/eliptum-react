@@ -48,13 +48,13 @@ export default function App() {
 
   const services = services_data.map((item, index) => (
     <motion.div
-      layout
+      layout="position"
       initial={{ opacity: 0 }}
       animate={{
         opacity: 1,
       }}
       exit={{ opacity: 0 }}
-      transition={{ layout: { type: "spring", stiffness: 100, damping: 10 } }}
+      transition={{ layout: { type: "spring", stiffness: 100, damping: 12.5 } }}
       onClick={() => handleServiceClick(index)}
       key={index}
     >
@@ -85,7 +85,10 @@ export default function App() {
                 crossOrigin="anonymous"
                 referrerPolicy="no-referrer"
               />
-              <section className="section services-section" id="services">
+              <section className="" id="services"                       className={`row services-row${
+                        selectedServiceIndex !== null ? " ss-services-row" : ""
+                      }`}>
+                
                 <div className="container">
                   <AnimatePresence>
                     {selectedServiceIndex === null && (
@@ -94,7 +97,7 @@ export default function App() {
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="row"
+                        className="row services-desc"
                       >
                         <div className="page-header">
                           <div className="section-title">
@@ -110,11 +113,11 @@ export default function App() {
                   </AnimatePresence>
                   <AnimatePresence>
                     <div
-                      className={`row services-row ${
-                        selectedServiceIndex !== null ? "ss-services-row" : ""
+                      className={`row services-row${
+                        selectedServiceIndex !== null ? " ss-services-row" : ""
                       }`}
                     >
-                      {" "}
+                      {/* {" "} */}
                       {selectedServiceIndex === null
                         ? services
                         : services[selectedServiceIndex]}
