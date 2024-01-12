@@ -6,7 +6,7 @@ import Navbar from "./Navbar";
 import { useState, useEffect } from "react";
 import "react-multi-carousel/lib/styles.css";
 import { services_data } from "./services_data";
-import { motion, AnimatePresence } from "framer-motion/dist/framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function App() {
   const [isNavbarExpanded, setIsNavbarExpanded] = useState(false);
