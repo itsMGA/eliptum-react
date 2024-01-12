@@ -109,14 +109,9 @@ export default function App() {
                   </AnimatePresence>
                   <div className="row services-row">
                     <AnimatePresence>
-                      {selectedServiceIndex === null ? (
-                        services
-                      ) : (
-                        <>
-                          {services[selectedServiceIndex]}
-                          <div>"Here"</div>
-                        </>
-                      )}
+                      {selectedServiceIndex === null
+                        ? services
+                        : services[selectedServiceIndex]}
                     </AnimatePresence>
                   </div>
                 </div>

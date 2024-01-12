@@ -1,13 +1,3 @@
-/* body {
-  margin-top: 20px;
-} */
-
-/* .page-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-} */
-
 .container {
   padding-left: 5rem;
   padding-top: 1.5rem;
@@ -16,6 +6,10 @@
   align-items: flex-start;
   /* justify-content: center; */
 }
+
+/* .services-row-single {
+} */
+
 .services-row {
   display: flex;
   flex-wrap: wrap;
