@@ -7,17 +7,17 @@
   /* justify-content: center; */
 }
 
-/* .services-row-single {
-} */
-
 .services-row {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  justify-content: center; /* Center items horizontally */
+  justify-content: center;
   gap: 1rem;
-  /* outline: 2px solid red;  */
   height: 100%;
+}
+
+.ss-services-row {
+  align-self: center;
 }
 
 .feature-container {
@@ -25,8 +25,10 @@
   max-height: 20rem;
 }
 
-.selected-service {
-  align-self: flex-start;
+.card-selected {
+  /* align-self: flex-start;
+  justify-content: center;
+  outline: auto; */
 }
 
 /* Feature Box
@@ -37,7 +39,6 @@
   max-height: 18rem;
   padding: 32px;
   box-shadow: 0 0 30px rgba(31, 45, 61, 0.125);
-  /* margin: 15px 0; */
   position: relative;
   z-index: 1;
   border-radius: 10px;
@@ -47,7 +48,6 @@
   -webkit-transition: ease all 0.35s;
   transition: ease all 0.35s;
   top: 0;
-  /* opacity: 10; */
 }
 
 .feature-box-1 * {

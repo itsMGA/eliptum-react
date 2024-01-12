@@ -48,10 +48,11 @@ export default function App() {
 
   const services = services_data.map((item, index) => (
     <motion.div
+      layout // Add this line
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ layout: { type: "spring", stiffness: 100, damping: 10 } }}
       onClick={() => handleServiceClick(index)}
       key={index}
     >
@@ -60,6 +61,7 @@ export default function App() {
         imageName={item.imageName}
         className={item.className}
         desc={item.desc}
+        selectedServiceIndex={selectedServiceIndex}
       />
     </motion.div>
   ));
@@ -107,13 +109,18 @@ export default function App() {
                       )}
                     </motion.div>
                   </AnimatePresence>
-                  <div className="row services-row">
-                    <AnimatePresence>
+                  <AnimatePresence>
+                    <div
+                      className={`row services-row ${
+                        selectedServiceIndex !== null ? "ss-services-row" : ""
+                      }`}
+                    >
+                      {" "}
                       {selectedServiceIndex === null
                         ? services
                         : services[selectedServiceIndex]}
-                    </AnimatePresence>
-                  </div>
+                    </div>
+                  </AnimatePresence>
                 </div>
               </section>
             </div>
