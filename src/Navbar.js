@@ -8,6 +8,7 @@ const Navbar = ({
   handleNavbarHover,
   handleNavbarLeave,
   isNavbarExpanded,
+  onSignInSignUpClick, // Add this prop
 }) => {
   return (
     <>
@@ -179,6 +180,34 @@ const Navbar = ({
                 </g>
               </svg>
               <span className="link-text">Contact</span>
+            </a>
+          </li>
+          <li className="nav-item">
+            <a href="#" className="nav-link" onClick={onSignInSignUpClick}>
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                data-prefix="fad"
+                data-icon="user"
+                role="img"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"
+                className="svg-inline--fa fa-user fa-w-14 fa-5x"
+              >
+                <g className="fa-group">
+                  <path
+                    fill="currentColor"
+                    d="M313.6 304h-16.7a174.08 174.08 0 0 1-145.8 0h-16.7A134.4 134.4 0 0 0 0 438.4V464a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48v-25.6a134.4 134.4 0 0 0-134.4-134.4z"
+                    className="fa-secondary"
+                  ></path>
+                  <path
+                    fill="currentColor"
+                    d="M224 256A128 128 0 1 0 96 128a128 128 0 0 0 128 128z"
+                    className="fa-primary"
+                  ></path>
+                </g>
+              </svg>
+              <span className="link-text">Sign In/Up</span>
             </a>
           </li>
           <li

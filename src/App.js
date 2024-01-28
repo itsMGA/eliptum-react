@@ -7,8 +7,17 @@ import { useState, useEffect } from "react";
 import "react-multi-carousel/lib/styles.css";
 import { services_data } from "./services_data";
 import { motion, AnimatePresence } from "framer-motion";
+import ServicesComponent from "./ServicesComponent";
+import SignInSignUpForm from "./SignInSignUpForm"; // Import the SignIn/SignUp Form Component
 
 export default function App() {
+  // Add state to handle showing the SignIn/SignUp form
+  const [showSignInSignUp, setShowSignInSignUp] = useState(false);
+
+  const toggleSignInSignUp = () => {
+    setShowSignInSignUp(!showSignInSignUp);
+  };
+
   const [isNavbarExpanded, setIsNavbarExpanded] = useState(false);
 
   const handleNavbarHover = () => {
@@ -46,29 +55,6 @@ export default function App() {
     }
   };
 
-  const services = services_data.map((item, index) => (
-    <motion.div
-      layout="position"
-      initial={{ opacity: 0 }}
-      animate={{
-        opacity: 1,
-      }}
-      exit={{ opacity: 0 }}
-      transition={{ layout: { type: "spring", stiffness: 100, damping: 12.5 } }}
-      onClick={() => handleServiceClick(index)}
-      key={index}
-    >
-      <Service
-        name={item.name}
-        imageName={item.imageName}
-        className={item.className}
-        desc={item.desc}
-        selectedServiceIndex={selectedServiceIndex}
-        index={index} // Add this line
-      />
-    </motion.div>
-  ));
-
   const renderContent = () => {
     switch (selectedOption) {
       case "home":
@@ -76,58 +62,10 @@ export default function App() {
 
       case "services":
         return (
-          <>
-            <div>
-              <link
-                rel="stylesheet"
-                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-                integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-                crossOrigin="anonymous"
-                referrerPolicy="no-referrer"
-              />
-              <section
-                className={`section service-section${
-                  selectedServiceIndex !== null ? " selected-serv-section" : ""
-                }`}
-              >
-                <div className="container">
-                  <AnimatePresence>
-                    {selectedServiceIndex === null && (
-                      <motion.div
-                        initial={{ opacity: 1, height: "auto" }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="row services-desc"
-                      >
-                        <div className="page-header">
-                          <div className="section-title">
-                            <h2>Services</h2>
-                            <p>
-                              Enhance efficiency, reliability, and quality with
-                              automated test solutions.
-                            </p>
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                  <AnimatePresence>
-                    <div
-                      className={`row services-row${
-                        selectedServiceIndex !== null ? " ss-services-row" : ""
-                      }`}
-                    >
-                      {/* {" "} */}
-                      {selectedServiceIndex === null
-                        ? services
-                        : services[selectedServiceIndex]}
-                    </div>
-                  </AnimatePresence>
-                </div>
-              </section>
-            </div>
-          </>
+          <ServicesComponent
+            selectedServiceIndex={selectedServiceIndex}
+            handleServiceClick={handleServiceClick}
+          />
         );
 
       case "shop":
@@ -135,6 +73,9 @@ export default function App() {
 
       case "contact":
         return <text text="">Hello, we'll be back soon</text>;
+      case "signin":
+      case "signup":
+        return <SignInSignUpForm toggleForm={toggleSignInSignUp} />;
 
       default:
         return <text text="">Home</text>;
@@ -157,8 +98,11 @@ export default function App() {
           handleNavbarHover={handleNavbarHover}
           handleNavbarLeave={handleNavbarLeave}
           isNavbarExpanded={isNavbarExpanded}
+          onSignInSignUpClick={toggleSignInSignUp} // Add prop for SignIn/SignUp click
         />
-
+        {showSignInSignUp && (
+          <SignInSignUpForm toggleForm={toggleSignInSignUp} />
+        )}
         <main
           className={`content ${
             isNavbarExpanded

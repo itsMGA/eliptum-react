@@ -1,4 +1,4 @@
-*{
+* {
   -ms-overflow-style: none;
 }
 ::-webkit-scrollbar {
@@ -7,15 +7,26 @@
 
 :root {
   font-size: 16px;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   --text-primary: #b6b6b6;
   --text-secondary: #ececec;
   --bg-primary: #23232e;
   --bg-secondary: #141418;
   --transition-speed: 600ms;
   --expanded-navbar-size: 16rem;
-  --default-navbar-size: 5rem
+  --default-navbar-size: 5rem;
+}
 
+.signin-signup-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 
 body {
@@ -189,7 +200,7 @@ main {
   }
 
   .navbar:hover {
-    width: var(--expanded-navbar-size);;
+    width: var(--expanded-navbar-size);
   }
 
   .navbar:hover .link-text {
