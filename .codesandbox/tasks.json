@@ -44,6 +44,14 @@
     "npm install framer-motion": {
       "name": "npm install framer-motion",
       "command": "npm install framer-motion"
+    },
+    "npm install --save @babel/plugin-proposal-decorators": {
+      "name": "npm install --save-dev @babel/plugin-proposal-decorators",
+      "command": "npm install --save @babel/plugin-proposal-decorators"
+    },
+    "npm i react-icons -save": {
+      "name": "npm i react-icons -save",
+      "command": "npm i react-icons -save"
     }
   }
 }

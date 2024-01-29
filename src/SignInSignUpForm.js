@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./SignInSignUpForm.css";
+import { FaUser, FaLock, FaLockOpen } from "react-icons/fa";
 
 const SignInSignUpForm = ({ toggleForm }) => {
   const [formType, setFormType] = useState("signin");
+  const [rememberMe, setRememberMe] = useState(false); // State to track the checkbox
   const formRef = useRef();
 
   useEffect(() => {
@@ -21,38 +23,89 @@ const SignInSignUpForm = ({ toggleForm }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formType === "signin") {
-      // Add sign-in API call logic here
-      console.log("Sign in logic here");
+      console.log("Login logic here", { rememberMe });
     } else if (formType === "signup") {
-      // Add sign-up API call logic here
-      console.log("Sign up logic here");
+      console.log("Register logic here");
     } else if (formType === "reset") {
-      // Add reset password API call logic here
       console.log("Reset password logic here");
+    }
+  };
+  const handleCheckboxClick = () => {
+    setRememberMe(!rememberMe);
+  };
+  const handleRememberMeChange = (e) => {
+    setRememberMe(e.target.checked);
+  };
+
+  const getHeader = () => {
+    switch (formType) {
+      case "signin":
+        return "Sign In";
+      case "signup":
+        return "Sign Up";
+      case "reset":
+        return "Password Recovery";
+      default:
+        return "Welcome";
     }
   };
 
   return (
     <div className="overlay">
       <div className={`signin-signup-modal ${formType}`} ref={formRef}>
+        <h1>{getHeader()}</h1>
         <button className="close-button" onClick={toggleForm}>
           &times;
         </button>
 
-        <form onSubmit={handleSubmit}>
+        <form className="form-content" onSubmit={handleSubmit}>
           {formType !== "reset" && (
-            <input
-              type="text"
-              placeholder={formType === "signin" ? "Username" : "New Username"}
-            />
+            <div className="input-box">
+              <input
+                type="text"
+                placeholder={
+                  formType === "signin" ? "Username" : "New Username"
+                }
+              />
+              <FaUser className="icon-login" />
+            </div>
           )}
-          {formType !== "signup" && (
-            <input type="password" placeholder="Password" />
+          {formType === "signup" ||
+            (formType === "signin" && (
+              <div className="input-box">
+                <input type="password" placeholder="Password" />
+                <FaLock className="icon-login" />
+              </div>
+            ))}
+          {formType === "signin" && (
+            <div className="checkbox-container">
+              <input
+                type="checkbox"
+                checked={rememberMe}
+                onChange={handleRememberMeChange}
+                className="futuristic-checkbox"
+              />
+              <label
+                htmlFor="rememberMe"
+                className="checkbox-label"
+                onClick={handleCheckboxClick}
+              >
+                Remember Me
+              </label>
+            </div>
           )}
           {formType === "reset" && (
             <>
-              <input type="password" placeholder="Old Password" />
-              <input type="password" placeholder="New Password" />
+              <div className="input-box reset-pass-box">
+                <input type="password" placeholder="Current Password" />
+                <FaLock
+                  className={`icon-login ${formType === "reset" ? "icon-reset-current" : ""}`}
+                />
+                <input type="password" placeholder="New Password" />
+                <FaLockOpen
+                  className={`icon-login ${formType === "reset" ? "icon-reset-new" : ""}`}
+                />
+              </div>
             </>
           )}
           <button type="submit">
@@ -63,26 +116,44 @@ const SignInSignUpForm = ({ toggleForm }) => {
                 : "Reset Password"}
           </button>
         </form>
+        <div className="account-actions">
+          {formType !== "reset" && (
+            <div className="signup-box">
+              {formType === "signin" ? (
+                <p>Don't have an account?</p>
+              ) : (
+                <p>Already have an account?</p>
+              )}
+              <a
+                href="#"
+                onClick={() =>
+                  setFormType(formType === "signin" ? "signup" : "signin")
+                }
+              >
+                {formType === "signin" ? "Sign Up" : "Sign In"}
+              </a>
+            </div>
+          )}
 
-        {formType !== "reset" && (
-          <button
-            onClick={() =>
-              setFormType(formType === "signin" ? "signup" : "signin")
-            }
-          >
-            {formType === "signin"
-              ? "Need an account? Sign Up"
-              : "Already have an account? Sign In"}
-          </button>
-        )}
+          {formType === "signin" && (
+            <a
+              href="#"
+              className="forgot-pass"
+              onClick={() => setFormType("reset")}
+            >
+              Forgot Password?
+            </a>
+          )}
 
-        {formType === "signin" && (
-          <button onClick={() => setFormType("reset")}>Forgot Password?</button>
-        )}
-
-        {formType === "reset" && (
-          <button onClick={() => setFormType("signin")}>Back to Sign In</button>
-        )}
+          {formType === "reset" && (
+            <button
+              className="back-to-signin"
+              onClick={() => setFormType("signin")}
+            >
+              Back to Sign In
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -100,9 +100,11 @@ export default function App() {
           isNavbarExpanded={isNavbarExpanded}
           onSignInSignUpClick={toggleSignInSignUp} // Add prop for SignIn/SignUp click
         />
-        {showSignInSignUp && (
-          <SignInSignUpForm toggleForm={toggleSignInSignUp} />
-        )}
+        <div className="user-login-form">
+          {showSignInSignUp && (
+            <SignInSignUpForm toggleForm={toggleSignInSignUp} />
+          )}
+        </div>
         <main
           className={`content ${
             isNavbarExpanded
