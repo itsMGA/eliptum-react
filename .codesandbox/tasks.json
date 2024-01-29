@@ -52,6 +52,10 @@
     "npm i react-icons -save": {
       "name": "npm i react-icons -save",
       "command": "npm i react-icons -save"
+    },
+    "npm i -save axios": {
+      "name": "axios",
+      "command": "npm i -save axios"
     }
   }
 }

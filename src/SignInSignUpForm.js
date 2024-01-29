@@ -59,41 +59,60 @@ const SignInSignUpForm = ({ toggleForm }) => {
         </button>
 
         <form className="form-content" onSubmit={handleSubmit}>
-          {formType !== "reset" && (
-            <div className="input-box">
-              <input
-                type="text"
-                placeholder={
-                  formType === "signin" ? "Username" : "New Username"
-                }
-              />
-              <FaUser className="icon-login" />
-            </div>
-          )}
-          {formType === "signup" ||
-            (formType === "signin" && (
+          {formType === "signin" && (
+            <div className="singup-box">
+              <div className="input-box">
+                <input
+                  type="text"
+                  placeholder={
+                    formType === "signin" ? "Username" : "New Username"
+                  }
+                />
+                <FaUser className="icon-login" />
+              </div>
               <div className="input-box">
                 <input type="password" placeholder="Password" />
                 <FaLock className="icon-login" />
               </div>
-            ))}
-          {formType === "signin" && (
-            <div className="checkbox-container">
-              <input
-                type="checkbox"
-                checked={rememberMe}
-                onChange={handleRememberMeChange}
-                className="futuristic-checkbox"
-              />
-              <label
-                htmlFor="rememberMe"
-                className="checkbox-label"
-                onClick={handleCheckboxClick}
-              >
-                Remember Me
-              </label>
+              <div className="checkbox-container">
+                <input
+                  type="checkbox"
+                  checked={rememberMe}
+                  onChange={handleRememberMeChange}
+                  className="futuristic-checkbox"
+                />
+                <label
+                  htmlFor="rememberMe"
+                  className="checkbox-label"
+                  onClick={handleCheckboxClick}
+                >
+                  Remember Me
+                </label>
+              </div>
             </div>
           )}
+
+          {formType === "signup" && (
+            <>
+              <div className="input-box">
+                <input type="text" placeholder="Username" />
+                <FaUser className="icon-login" />
+              </div>
+              <div className="input-box">
+                <input type="password" placeholder="Password" />
+                <FaUser className="icon-login" />
+              </div>
+              <div className="input-box">
+                <input type="text" placeholder="Email" />
+                <FaUser className="icon-login" />
+              </div>
+              <div className="input-box">
+                <input type="text" placeholder="Phone number (optional)" />
+                <FaUser className="icon-login" />
+              </div>
+            </>
+          )}
+
           {formType === "reset" && (
             <>
               <div className="input-box reset-pass-box">
@@ -108,7 +127,8 @@ const SignInSignUpForm = ({ toggleForm }) => {
               </div>
             </>
           )}
-          <button type="submit">
+
+          <button className="submitbtn" type="submit">
             {formType === "signin"
               ? "Sign In"
               : formType === "signup"
@@ -158,5 +178,4 @@ const SignInSignUpForm = ({ toggleForm }) => {
     </div>
   );
 };
-
 export default SignInSignUpForm;
