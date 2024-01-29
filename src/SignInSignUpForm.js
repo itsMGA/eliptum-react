@@ -1,11 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./SignInSignUpForm.css";
 import { FaUser, FaLock, FaLockOpen } from "react-icons/fa";
+import axios from "axios";
 
 const SignInSignUpForm = ({ toggleForm }) => {
   const [formType, setFormType] = useState("signin");
   const [rememberMe, setRememberMe] = useState(false); // State to track the checkbox
   const formRef = useRef();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const checkClickOutside = (e) => {
@@ -20,12 +26,47 @@ const SignInSignUpForm = ({ toggleForm }) => {
     };
   }, [toggleForm]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMessage(""); // Reset error message
+    if (formType === "signin") {
+      console.log("Login logic here", { rememberMe });
+    }
     if (formType === "signin") {
       console.log("Login logic here", { rememberMe });
     } else if (formType === "signup") {
-      console.log("Register logic here");
+      if (!username) {
+        setErrorMessage("Username is required");
+        return;
+      }
+      if (!password) {
+        setErrorMessage("Password is required");
+        return;
+      }
+      if (!email) {
+        setErrorMessage("Email is required");
+        return;
+      }
+
+      try {
+        const response = await axios.post("https://eliptum.tech/user/create", {
+          username,
+          password,
+          email,
+          phone_number: phoneNumber,
+        });
+
+        if (response.status === 200) {
+          console.log("User successfully created");
+        } else {
+          setErrorMessage("Error: " + response.status);
+        }
+      } catch (error) {
+        setErrorMessage("This the error " + error.request);
+        setTimeout(() => {
+          setFormType("signup");
+        }, 1000);
+      }
     } else if (formType === "reset") {
       console.log("Reset password logic here");
     }
@@ -95,21 +136,42 @@ const SignInSignUpForm = ({ toggleForm }) => {
           {formType === "signup" && (
             <>
               <div className="input-box">
-                <input type="text" placeholder="Username" />
+                <input
+                  type="text"
+                  placeholder="Username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
                 <FaUser className="icon-login" />
               </div>
               <div className="input-box">
-                <input type="password" placeholder="Password" />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
                 <FaUser className="icon-login" />
               </div>
               <div className="input-box">
-                <input type="text" placeholder="Email" />
+                <input
+                  type="text"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
                 <FaUser className="icon-login" />
               </div>
               <div className="input-box">
-                <input type="text" placeholder="Phone number (optional)" />
+                <input
+                  type="text"
+                  placeholder="Phone number (optional)"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                />
                 <FaUser className="icon-login" />
               </div>
+              {errorMessage && <p className="error-message">{errorMessage}</p>}
             </>
           )}
 
