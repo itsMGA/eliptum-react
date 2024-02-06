@@ -1,24 +1,47 @@
-const axios = require("axios"); // Import Axios if you are using Node.js
+const axios = require("axios");
+const NodeRSA = require("node-rsa");
+const fs = require("fs");
 
-// Define the data you want to send in the request
-const userData = {
-  username: "exampleUsername",
-  password: "examplePassword",
-  email: "example@email.com",
-  phone_number: "1234567890",
-};
+// Define the URL of the API endpoint for cosd
+const cosdApiUrl = "https://eliptum.tech/user/cosd";
 
-// Define the URL of the API endpoint
-const apiUrl = "https://eliptum.tech/user/create";
+// Function to encrypt a string
+function encryptString(publicKey, stringToEncrypt) {
+  // Remove potential formatting issues
+  publicKey = publicKey.replace(/\\n/g, "\n").trim();
 
-// Make an HTTP POST request using Axios
+  if (publicKey.startsWith("b'")) {
+    publicKey = publicKey.substring(2, publicKey.length - 1);
+  }
+
+  const key = new NodeRSA(publicKey, "pkcs8-public-pem");
+  return key.encrypt(stringToEncrypt, "base64");
+}
+
+// Function to write encrypted data to a file
+function writeToFile(data) {
+  fs.writeFile("encryptedPassword.txt", data, (err) => {
+    if (err) {
+      console.error("Error writing to file:", err);
+    } else {
+      console.log("Encrypted password written to encryptedPassword.txt");
+    }
+  });
+}
+
+// Get the public key from the server
 axios
-  .post(apiUrl, userData)
+  .get(cosdApiUrl)
   .then((response) => {
-    // Successful response
-    console.log("API Response:", response.data);
+    const publicKey = response.data.cosd;
+
+    // Encrypt the string "password"
+    const encryptedPassword = encryptString(publicKey, "password");
+
+    // Console log and write the encrypted password to a file
+    console.log("Encrypted Password:", encryptedPassword);
+    writeToFile(encryptedPassword);
   })
   .catch((error) => {
-    // Handle errors
-    console.error("API Request Error:", error);
+    console.error("Public Key Fetch Error:", error);
   });

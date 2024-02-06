@@ -56,6 +56,18 @@
     "npm i -save axios": {
       "name": "axios",
       "command": "npm i -save axios"
+    },
+    "react-phone-number-input": {
+      "name": "phinput",
+      "command": "react-phone-number-input"
+    },
+    "npm i react-phone-number-input -save": {
+      "name": "phon",
+      "command": "npm i react-phone-number-input -save"
+    },
+    "npm install bcryptjs -save": {
+      "name": "bcryp",
+      "command": "npm install bcryptjs -save"
     }
   }
 }

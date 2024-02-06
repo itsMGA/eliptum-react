@@ -1,7 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./SignInSignUpForm.css";
-import { FaUser, FaLock, FaLockOpen } from "react-icons/fa";
+import {
+  FaUser,
+  FaLock,
+  FaLockOpen,
+  FaExclamationCircle,
+} from "react-icons/fa";
 import axios from "axios";
+import PhoneInput from "react-phone-input-2";
+import "./phone_style.css";
+import { encryptData } from "./encryptUtil"; // adjust the path according to your project structure
 
 const SignInSignUpForm = ({ toggleForm }) => {
   const [formType, setFormType] = useState("signin");
@@ -12,6 +20,14 @@ const SignInSignUpForm = ({ toggleForm }) => {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState(""); // State for success message
+  const [highlight_red, sethighlight_red] = useState(""); // State for success message
+  const [phone, setPhone] = useState("");
+
+  const validateEmail = (email) => {
+    const re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  };
 
   useEffect(() => {
     const checkClickOutside = (e) => {
@@ -26,46 +42,65 @@ const SignInSignUpForm = ({ toggleForm }) => {
     };
   }, [toggleForm]);
 
+  useEffect(() => {
+    setErrorMessage("");
+  }, [formType]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage(""); // Reset error message
+    setSuccessMessage(""); // Reset success message
+    sethighlight_red("");
     if (formType === "signin") {
       console.log("Login logic here", { rememberMe });
     }
     if (formType === "signin") {
       console.log("Login logic here", { rememberMe });
     } else if (formType === "signup") {
-      if (!username) {
-        setErrorMessage("Username is required");
+      if (!username || username.length < 3 || username.length > 15) {
+        setErrorMessage("Username must be 3-15 characters long");
+        sethighlight_red("username");
         return;
       }
-      if (!password) {
-        setErrorMessage("Password is required");
+      if (!validateEmail(email)) {
+        setErrorMessage("Invalid email format");
+        sethighlight_red("email");
         return;
       }
-      if (!email) {
-        setErrorMessage("Email is required");
+      if (!password || password.length < 8) {
+        setErrorMessage("Password must be at least 8 characters long");
+        sethighlight_red("password");
         return;
       }
 
       try {
+        const encryptedPassword = await encryptData(password);
         const response = await axios.post("https://eliptum.tech/user/create", {
           username,
-          password,
+          encryptedPassword,
           email,
           phone_number: phoneNumber,
         });
 
-        if (response.status === 200) {
-          console.log("User successfully created");
-        } else {
-          setErrorMessage("Error: " + response.status);
+        if (response.status === 201) {
+          setSuccessMessage("Account created successfully!");
+          setTimeout(() => {
+            setFormType("signin");
+          }, 1000);
         }
       } catch (error) {
-        setErrorMessage("This the error " + error.request);
-        setTimeout(() => {
-          setFormType("signup");
-        }, 1000);
+        if (error.response.status === 400) {
+          console.log(error.response.data.message);
+          console.log(error.response);
+          setErrorMessage(error.response.data.message);
+          if (error.response.data.message === "Email already used") {
+            sethighlight_red("email");
+          } else if (error.response.data.message === "User already exists") {
+            sethighlight_red("username");
+          }
+        } else {
+          setErrorMessage("An unexpected error occurred" + error);
+        }
       }
     } else if (formType === "reset") {
       console.log("Reset password logic here");
@@ -132,10 +167,11 @@ const SignInSignUpForm = ({ toggleForm }) => {
               </div>
             </div>
           )}
-
           {formType === "signup" && (
             <>
-              <div className="input-box">
+              <div
+                className={`input-box ${highlight_red === "username" ? "error_field_highlight" : ""}`}
+              >
                 <input
                   type="text"
                   placeholder="Username"
@@ -144,7 +180,9 @@ const SignInSignUpForm = ({ toggleForm }) => {
                 />
                 <FaUser className="icon-login" />
               </div>
-              <div className="input-box">
+              <div
+                className={`input-box ${highlight_red === "password" ? "error_field_highlight" : ""}`}
+              >
                 <input
                   type="password"
                   placeholder="Password"
@@ -153,7 +191,9 @@ const SignInSignUpForm = ({ toggleForm }) => {
                 />
                 <FaUser className="icon-login" />
               </div>
-              <div className="input-box">
+              <div
+                className={`input-box ${highlight_red === "email" ? "error_field_highlight" : ""}`}
+              >
                 <input
                   type="text"
                   placeholder="Email"
@@ -162,19 +202,24 @@ const SignInSignUpForm = ({ toggleForm }) => {
                 />
                 <FaUser className="icon-login" />
               </div>
-              <div className="input-box">
-                <input
-                  type="text"
-                  placeholder="Phone number (optional)"
-                  value={phoneNumber}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
+              <div
+                className={`input-box ${highlight_red === "phone" ? "error_field_highlight" : ""}`}
+              >
+                <PhoneInput
+                  placeholder="Enter phone number"
+                  value={phone}
+                  onChange={setPhone}
+                  country="ro"
                 />
-                <FaUser className="icon-login" />
               </div>
-              {errorMessage && <p className="error-message">{errorMessage}</p>}
+              {errorMessage && (
+                <div className="error-message fade-in">
+                  <FaExclamationCircle className="error-icon" />
+                  {errorMessage}
+                </div>
+              )}{" "}
             </>
           )}
-
           {formType === "reset" && (
             <>
               <div className="input-box reset-pass-box">
@@ -189,7 +234,6 @@ const SignInSignUpForm = ({ toggleForm }) => {
               </div>
             </>
           )}
-
           <button className="submitbtn" type="submit">
             {formType === "signin"
               ? "Sign In"
@@ -198,6 +242,12 @@ const SignInSignUpForm = ({ toggleForm }) => {
                 : "Reset Password"}
           </button>
         </form>
+        {successMessage && (
+          <div className="success-message">
+            <div className="success-icon">✓</div>
+            {successMessage}
+          </div>
+        )}
         <div className="account-actions">
           {formType !== "reset" && (
             <div className="signup-box">
