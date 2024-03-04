@@ -1,0 +1,56 @@
+/* Cookie Consent Bar Styles */
+.cookie-consent-bar {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cookie-consent-button,
+.cookie-consent-decline-button {
+  color: #ffffff;
+  font-size: 1rem;
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cookie-consent-button {
+  background-color: #007bff;
+  border-radius: 5px;
+}
+
+.cookie-consent-decline-button {
+  background-color: #6c757d;
+  border-radius: 5px;
+}
+
+/* Ensure buttons are of the same size */
+.cookie-consent-button,
+.cookie-consent-decline-button {
+  min-width: 120px; /* Adjust based on content */
+  text-align: center;
+}
+
+/* Hover effects for buttons */
+.cookie-consent-button:hover {
+  background-color: #0056b3;
+}
+
+.cookie-consent-decline-button:hover {
+  background-color: #545b62;
+}
+
+/* Custom link styling within the consent bar */
+.cookie-policy-link {
+  text-decoration: underline;
+  cursor: pointer;
+  color: var(--text-primary);
+  padding-left: 5px;
+}
