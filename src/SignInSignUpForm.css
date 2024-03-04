@@ -114,6 +114,7 @@ form.form-content {
   color: white;
   outline: none;
   width: 100%;
+  max-width: 100%; /* Set maximum width */
 }
 
 button {
@@ -127,6 +128,7 @@ button {
   font-size: 16px;
   margin-top: 10px;
   transition: all 0.5s ease-in-out;
+  max-width: 100%; /* Set maximum width */
 }
 .form-control {
   background-color: #000;
@@ -317,7 +319,8 @@ button:hover {
   display: flex;
   align-self: flex-start;
   animation: fadeIn 1s;
-  white-space: nowrap; /* Prevents text wrapping */
+  white-space: normal; /* Change to allow text wrapping */
+  max-width: 100%; /* Set maximum width */
 }
 
 .error-icon {
