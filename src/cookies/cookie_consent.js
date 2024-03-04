@@ -6,9 +6,12 @@ import "./style_cookie_consent.css";
 const fetchCSRFToken = async () => {
   try {
     // Include credentials in the request to ensure cookies are sent and received
-    const response = await axios.get("/user/visitor_config", {
-      withCredentials: true,
-    });
+    const response = await axios.get(
+      "https://eliptum.tech/user/visitor_config",
+      {
+        withCredentials: true,
+      },
+    );
     const { csrf_token } = response.data;
 
     // Optionally, store the CSRF token in Axios defaults or in application state for future requests
