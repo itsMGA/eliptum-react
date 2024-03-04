@@ -74,13 +74,32 @@ const SignInSignUpForm = ({ toggleForm }) => {
       }
 
       try {
-        const encryptedPassword = await encryptData(password);
-        const response = await axios.post("https://eliptum.tech/user/create", {
-          username,
-          encryptedPassword,
-          email,
-          phone_number: phoneNumber,
-        });
+        const public_key_r = await axios.get(
+          "https://eliptum.tech/get-public-key",
+          {
+            withCredentials: true, // This is crucial for cookies to be sent and received in cross-origin requests
+          },
+        );
+        const publicKey = public_key_r.data.publicKey;
+        const csrfToken = public_key_r.data.csrf_token;
+        console.log(csrfToken);
+        const encryptedPassword = await encryptData(password, publicKey, false);
+
+        const response = await axios.post(
+          "https://eliptum.tech/user/create",
+          {
+            username,
+            password: encryptedPassword,
+            email,
+            phone_number: phoneNumber,
+          },
+          {
+            withCredentials: true,
+            headers: {
+              "X-CSRFToken": csrfToken,
+            },
+          },
+        );
 
         if (response.status === 201) {
           setSuccessMessage("Account created successfully!");
@@ -89,7 +108,7 @@ const SignInSignUpForm = ({ toggleForm }) => {
           }, 1000);
         }
       } catch (error) {
-        if (error.response.status === 400) {
+        if (error.response && error.response.status === 400) {
           console.log(error.response.data.message);
           console.log(error.response);
           setErrorMessage(error.response.data.message);

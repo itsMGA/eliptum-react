@@ -1,15 +1,22 @@
-import bcrypt from "bcryptjs";
+import JSEncrypt from "jsencrypt";
+import axios from "axios";
 
-const saltRounds = 10;
-
-export const encryptData = async (data) => {
+export const encryptData = async (data, publicKey, encrypt = true) => {
   try {
-    const salt = await bcrypt.genSalt(saltRounds);
-    const hashedData = await bcrypt.hash(data, salt);
-    console.log(hashedData);
-    return hashedData;
+    // If encryption is not needed, return the plain data
+    if (!encrypt) return data;
+    // Create a new JSEncrypt object
+    const encryptor = new JSEncrypt();
+
+    // Set the public key
+    encryptor.setPublicKey(publicKey);
+
+    // Encrypt the data using RSA
+    const encryptedData = encryptor.encrypt(data);
+    return encryptedData;
   } catch (error) {
     console.error("Error encrypting data: ", error);
+    throw error;
   }
 };
 
