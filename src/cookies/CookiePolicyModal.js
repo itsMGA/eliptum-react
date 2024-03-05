@@ -15,7 +15,7 @@ const CookiePolicyModal = ({ isVisible, onClose }) => {
     setIsOptionalDropdownVisible(!isOptionalDropdownVisible);
 
   return (
-    <div className="overlay">
+    <div className="cookie-overlay">
       <div className="cookie-policy-modal">
         <h1>Cookie Policy</h1>
         <button className="close-button" onClick={onClose}>
