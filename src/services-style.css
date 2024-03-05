@@ -202,6 +202,9 @@
     flex-direction: column;
     max-width: 100%;
   }
+  .section-title {
+    padding-top: 0.9rem; /* Add padding to the top */
+  }
 
   .container {
     display: flex;
