@@ -36,16 +36,12 @@ body::-webkit-scrollbar-thumb {
   background: #6649b8;
 }
 
-main {
-  margin-left: 5rem;
-  padding: 1rem;
-}
-
 .navbar {
   position: fixed;
   background-color: var(--bg-primary);
   transition: width 600ms ease;
   overflow: scroll;
+  z-index: 1000; /* Ensure it's above other elements */
 }
 
 .navbar-nav {
@@ -155,7 +151,12 @@ main {
 }
 
 /* Small screens */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 780px) {
+  /* .container {
+    display: flex;
+    align-items: flex-start;
+  } */
+
   .navbar {
     bottom: 0;
     width: 100vw;
@@ -202,6 +203,21 @@ main {
   .navbar:hover .logo-text {
     left: 0px;
   }
+
+  main {
+    margin-left: 5rem;
+    padding: 1rem;
+  }
+
+  .shiftContent {
+    margin-left: var(--expanded-navbar-size);
+    transition: var(--transition-speed) ease;
+  }
+
+  .shiftContentBack {
+    margin-left: var(--default-navbar-size);
+    transition: var(--transition-speed) ease;
+  }
 }
 
 .dark {
@@ -239,14 +255,4 @@ main {
 
 .solar #solarIcon {
   display: block;
-}
-
-.shiftContent {
-  margin-left: var(--expanded-navbar-size);
-  transition: var(--transition-speed) ease;
-}
-
-.shiftContentBack {
-  margin-left: var(--default-navbar-size);
-  transition: var(--transition-speed) ease;
 }
