@@ -47,10 +47,13 @@
   height: 28rem;
 }
 
-form.form-content {
+.form-content {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+  width: 100%; /* Adjust width as necessary */
+  min-height: auto;
+  overflow: visible; /* Allows content to extend beyond */
 }
 
 .input-box {
@@ -313,20 +316,32 @@ button:hover {
     transform: translateY(-15px);
   }
 }
-.error-message {
-  color: red;
-  font-size: 0.8rem;
+
+.error-container {
+  padding-top: 0.2rem;
   display: flex;
-  align-self: flex-start;
-  animation: fadeIn 1s;
-  white-space: normal; /* Change to allow text wrapping */
-  max-width: 100%; /* Set maximum width */
+  align-items: flex-start; /* Align items at the start */
+  max-width: 100%; /* Ensure the container doesn't overflow its parent */
 }
 
 .error-icon {
-  display: inline-block;
-  margin-right: 10px;
-  font-size: 1.3rem;
+  display: flex; /* Use flex to keep the icon aligned */
+  margin-right: 10px; /* Space between icon and message */
+  font-size: 1.3rem; /* Icon size */
+  flex-shrink: 0; /* Prevent the icon from shrinking */
+  color: red; /* Icon color, assuming you want it the same as the error message */
+}
+
+.error-message {
+  color: red;
+  font-size: 0.8rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: calc(
+    100% - 1.3em - 10px
+  ); /* Adjusted to take the icon width and margin into account */
+  box-sizing: border-box;
+  animation: fadeIn 1s;
 }
 
 @keyframes fadeIn {

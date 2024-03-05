@@ -226,16 +226,16 @@ const SignInSignUpForm = ({ toggleForm }) => {
                 <PhoneInput
                   placeholder="Enter phone number"
                   value={phoneNumber}
-                  onChange={(value) => setPhoneNumber(value)}
+                  onChange={(value) => setPhoneNumber("+" + value)}
                   country="ro"
                 />
               </div>
               {errorMessage && (
-                <div className="error-message fade-in">
+                <div className="error-container fade-in">
                   <FaExclamationCircle className="error-icon" />
-                  {errorMessage}
+                  <span className="error-message">{errorMessage}</span>
                 </div>
-              )}{" "}
+              )}
             </>
           )}
           {formType === "reset" && (
