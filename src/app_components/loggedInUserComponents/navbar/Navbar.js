@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-import LogoSVG from "./logo.js";
-import { toggleTheme } from "./theme.js";
+import LogoSVG from "./logo";
+import { toggleTheme } from "./theme";
 
 const Navbar = ({
   setSelectedOption,

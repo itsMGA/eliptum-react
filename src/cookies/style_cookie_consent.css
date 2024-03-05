@@ -54,3 +54,17 @@
   color: var(--text-primary);
   padding-left: 5px;
 }
+
+@media (min-width: 768px) {
+  .cookie-container {
+    padding-left: 4.5rem;
+    display: flex;
+  }
+}
+
+@media (max-width: 768px) {
+  .cookie-container {
+    display: block;
+    /* flex-direction: row; */
+  }
+}

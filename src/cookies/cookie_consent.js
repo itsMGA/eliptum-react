@@ -58,7 +58,7 @@ export const CookieConsentProvider = ({ children, onCookiePolicyClick }) => {
       {children}
       {!cookiesAccepted && (
         <CookieConsent
-          location="bottom"
+          location="top"
           buttonText="Accept All"
           declineButtonText="Accept Necessary"
           onAccept={handleAcceptAll}
@@ -70,13 +70,17 @@ export const CookieConsentProvider = ({ children, onCookiePolicyClick }) => {
           declineButtonClasses="cookie-consent-decline-button" // Use class for decline button
           expires={150}
         >
-          This website uses cookies to enhance the user experience.
-          <span
-            className="cookie-policy-link" // Use class for link
-            onClick={onCookiePolicyClick}
-          >
-            Click here for cookies policy.
-          </span>
+          <div className="cookie-container">
+            <span className="cookie-desc">
+              This website uses cookies to enhance the user experience.
+            </span>
+            <span
+              className="cookie-policy-link" // Use class for link
+              onClick={onCookiePolicyClick}
+            >
+              Click here for cookies policy.
+            </span>
+          </div>
         </CookieConsent>
       )}
     </CookieConsentContext.Provider>
