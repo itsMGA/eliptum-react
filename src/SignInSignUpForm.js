@@ -22,7 +22,6 @@ const SignInSignUpForm = ({ toggleForm }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState(""); // State for success message
   const [highlight_red, sethighlight_red] = useState(""); // State for success message
-  const [phone, setPhone] = useState("");
 
   const validateEmail = (email) => {
     const re = /\S+@\S+\.\S+/;
@@ -226,8 +225,8 @@ const SignInSignUpForm = ({ toggleForm }) => {
               >
                 <PhoneInput
                   placeholder="Enter phone number"
-                  value={phone}
-                  onChange={setPhone}
+                  value={phoneNumber}
+                  onChange={(value) => setPhoneNumber(value)}
                   country="ro"
                 />
               </div>
