@@ -98,14 +98,11 @@ const SignInSignUpForm = ({ toggleForm, onLoginSuccess }) => {
 
         if (response.status === 200) {
           setSuccessMessage("You have been successfully logged in.");
-          onLoginSuccess();
-          console.log("waiting on toggle");
+          console.log("logged in with success");
 
-          // if (rememberMe) {
-          localStorage.setItem("access_token", response.data.access_token); // Assuming 'token' is the JWT token
-          // }
           setTimeout(() => {
-            console.log("waiting on toggle");
+            localStorage.setItem("access_token", response.data.access_token); // Assuming 'token' is the JWT token
+            onLoginSuccess();
             toggleForm();
           }, 1000);
         }
@@ -116,8 +113,6 @@ const SignInSignUpForm = ({ toggleForm, onLoginSuccess }) => {
           setErrorMessage(error.response.data.message);
         }
       }
-
-      console.log("Login logic here", { rememberMe });
     } else if (formType === "signup") {
       if (!username || username.length < 3 || username.length > 15) {
         setErrorMessage("Username must be 3-15 characters long");
@@ -208,7 +203,7 @@ const SignInSignUpForm = ({ toggleForm, onLoginSuccess }) => {
   };
 
   return (
-    <div className="overlay">
+    <div className="overlay-signin">
       <div className={`signin-signup-modal ${formType}`} ref={formRef}>
         <h1>{getHeader()}</h1>
         <button className="close-button" onClick={toggleForm}>

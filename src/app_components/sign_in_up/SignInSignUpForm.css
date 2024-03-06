@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
 /* Overlay for the entire page */
-.overlay {
+.overlay-signin {
   position: fixed;
   top: 0;
   left: 0;
@@ -34,6 +34,7 @@
 }
 
 .signin-signup-modal h1 {
+  color: #fff;
   margin-bottom: 4rem;
 }
 

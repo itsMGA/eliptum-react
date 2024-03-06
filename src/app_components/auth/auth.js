@@ -2,8 +2,10 @@ export const isAuthenticated = () => {
   const token = localStorage.getItem("access_token");
 
   if (!token) {
+    console.log("JWT Token not found");
     return false; // No token present
   }
+  console.log("JWT Token found");
 
   const tokenParts = token.split(".");
   if (tokenParts.length !== 3) {

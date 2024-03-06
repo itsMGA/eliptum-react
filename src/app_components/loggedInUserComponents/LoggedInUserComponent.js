@@ -10,10 +10,13 @@ import SignInSignUpForm from "./../sign_in_up/SignInSignUpForm";
 import { CookieConsentProvider } from "./../../cookies/cookie_consent";
 import CookiePolicyModal from "./../../cookies/CookiePolicyModal";
 
-function LoggedInUserComponent({ isUserLoggedIn, handleLogout }) {
+function LoggedInUserComponent({
+  isUserLoggedIn,
+  handleLogout,
+  handleLoginSuccess,
+}) {
   const [showSignInSignUp, setShowSignInSignUp] = useState(false);
   const [isCookiePolicyVisible, setIsCookiePolicyVisible] = useState(false);
-  const [showUserProfile, setShowUserProfile] = useState(false);
 
   const toggleCookiePolicyModal = () => {
     setIsCookiePolicyVisible(!isCookiePolicyVisible);
@@ -39,7 +42,7 @@ function LoggedInUserComponent({ isUserLoggedIn, handleLogout }) {
     setIsNavbarExpanded(false);
   };
 
-  const [selectedOption, setSelectedOption] = useState("home");
+  const [selectedOption, setSelectedOption] = useState("services");
 
   const [selectedServiceIndex, setSelectedServiceIndex] = useState(null);
 
@@ -64,6 +67,8 @@ function LoggedInUserComponent({ isUserLoggedIn, handleLogout }) {
     }
   };
   const renderContent = () => {
+    console.log("user status" + isUserLoggedIn);
+
     switch (selectedOption) {
       case "home":
         return <text text="">Home</text>;
@@ -86,7 +91,7 @@ function LoggedInUserComponent({ isUserLoggedIn, handleLogout }) {
             {showSignInSignUp && (
               <SignInSignUpForm
                 toggleForm={toggleSignInSignUp}
-                onLoginSuccess={isUserLoggedIn}
+                onLoginSuccess={handleLoginSuccess}
               />
             )}
           </div>
