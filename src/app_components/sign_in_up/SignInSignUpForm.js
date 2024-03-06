@@ -11,7 +11,7 @@ import PhoneInput from "react-phone-input-2";
 import "./phone_style.css";
 import { encryptData } from "./encryptUtil"; // adjust the path according to your project structure
 
-const SignInSignUpForm = ({ toggleForm }) => {
+const SignInSignUpForm = ({ toggleForm, onLoginSuccess }) => {
   const [formType, setFormType] = useState("signin");
   const [rememberMe, setRememberMe] = useState(false); // State to track the checkbox
   const formRef = useRef();
@@ -22,6 +22,8 @@ const SignInSignUpForm = ({ toggleForm }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState(""); // State for success message
   const [highlight_red, sethighlight_red] = useState(""); // State for success message
+  const [login_email, setLoginEmail] = useState("");
+  const [login_password, setLoginPassword] = useState("");
 
   const validateEmail = (email) => {
     const re = /\S+@\S+\.\S+/;
@@ -50,10 +52,71 @@ const SignInSignUpForm = ({ toggleForm }) => {
     setErrorMessage(""); // Reset error message
     setSuccessMessage(""); // Reset success message
     sethighlight_red("");
+
     if (formType === "signin") {
-      console.log("Login logic here", { rememberMe });
-    }
-    if (formType === "signin") {
+      console.log("we're siging in ");
+      if (!validateEmail(login_email)) {
+        setErrorMessage("Invalid email format");
+        sethighlight_red("email");
+        return;
+      }
+
+      if (!login_password || login_password.length === 0) {
+        setErrorMessage("No password provided");
+        sethighlight_red("password");
+        return;
+      }
+      try {
+        const public_key_r = await axios.get(
+          "https://eliptum.tech/get-public-key",
+          {
+            withCredentials: true, // This is crucial for cookies to be sent and received in cross-origin requests
+          },
+        );
+        const publicKey = public_key_r.data.publicKey;
+        const csrfToken = public_key_r.data.csrf_token;
+        console.log(csrfToken);
+        const encryptedPassword = await encryptData(
+          login_password,
+          publicKey,
+          false,
+        );
+
+        const response = await axios.post(
+          "https://eliptum.tech/user/login",
+          {
+            email: login_email,
+            password: encryptedPassword,
+          },
+          {
+            withCredentials: true,
+            headers: {
+              "X-CSRFToken": csrfToken,
+            },
+          },
+        );
+
+        if (response.status === 200) {
+          setSuccessMessage("You have been successfully logged in.");
+          onLoginSuccess();
+          console.log("waiting on toggle");
+
+          // if (rememberMe) {
+          localStorage.setItem("access_token", response.data.access_token); // Assuming 'token' is the JWT token
+          // }
+          setTimeout(() => {
+            console.log("waiting on toggle");
+            toggleForm();
+          }, 1000);
+        }
+      } catch (error) {
+        if (error.response) {
+          console.log(error.response.data.message);
+          console.log(error.response);
+          setErrorMessage(error.response.data.message);
+        }
+      }
+
       console.log("Login logic here", { rememberMe });
     } else if (formType === "signup") {
       if (!username || username.length < 3 || username.length > 15) {
@@ -155,21 +218,33 @@ const SignInSignUpForm = ({ toggleForm }) => {
         <form className="form-content" onSubmit={handleSubmit}>
           {formType === "signin" && (
             <div className="singup-box">
-              <div className="input-box">
+              <div
+                className={`input-box ${highlight_red === "email" ? "error_field_highlight" : ""}`}
+              >
                 <input
+                  name="email"
                   type="text"
-                  placeholder={
-                    formType === "signin" ? "Username" : "New Username"
-                  }
+                  placeholder="E-Mail"
+                  value={login_email}
+                  onChange={(e) => setLoginEmail(e.target.value)}
                 />
                 <FaUser className="icon-login" />
               </div>
-              <div className="input-box">
-                <input type="password" placeholder="Password" />
+              <div
+                className={`input-box ${highlight_red === "password" ? "error_field_highlight" : ""}`}
+              >
+                <input
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                  value={login_password}
+                  onChange={(e) => setLoginPassword(e.target.value)}
+                />
                 <FaLock className="icon-login" />
               </div>
               <div className="checkbox-container">
                 <input
+                  name="checkbox"
                   type="checkbox"
                   checked={rememberMe}
                   onChange={handleRememberMeChange}
@@ -183,6 +258,12 @@ const SignInSignUpForm = ({ toggleForm }) => {
                   Remember Me
                 </label>
               </div>
+              {errorMessage && (
+                <div className="error-container fade-in">
+                  <FaExclamationCircle className="error-icon" />
+                  <span className="error-message">{errorMessage}</span>
+                </div>
+              )}
             </div>
           )}
           {formType === "signup" && (
@@ -241,11 +322,19 @@ const SignInSignUpForm = ({ toggleForm }) => {
           {formType === "reset" && (
             <>
               <div className="input-box reset-pass-box">
-                <input type="password" placeholder="Current Password" />
+                <input
+                  type="password"
+                  placeholder="Current Password"
+                  name="password"
+                />
                 <FaLock
                   className={`icon-login ${formType === "reset" ? "icon-reset-current" : ""}`}
                 />
-                <input type="password" placeholder="New Password" />
+                <input
+                  type="password"
+                  placeholder="New Password"
+                  name="new-password"
+                />
                 <FaLockOpen
                   className={`icon-login ${formType === "reset" ? "icon-reset-new" : ""}`}
                 />

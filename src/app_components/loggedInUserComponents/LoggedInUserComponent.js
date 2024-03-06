@@ -10,14 +10,20 @@ import SignInSignUpForm from "./../sign_in_up/SignInSignUpForm";
 import { CookieConsentProvider } from "./../../cookies/cookie_consent";
 import CookiePolicyModal from "./../../cookies/CookiePolicyModal";
 
-function LoggedInUserComponent() {
+function LoggedInUserComponent({ isUserLoggedIn, handleLogout }) {
   const [showSignInSignUp, setShowSignInSignUp] = useState(false);
   const [isCookiePolicyVisible, setIsCookiePolicyVisible] = useState(false);
+  const [showUserProfile, setShowUserProfile] = useState(false);
 
   const toggleCookiePolicyModal = () => {
     setIsCookiePolicyVisible(!isCookiePolicyVisible);
   };
+
   const toggleSignInSignUp = () => {
+    setShowSignInSignUp(!showSignInSignUp);
+  };
+
+  const toggleSignInSignUp2 = () => {
     setShowSignInSignUp(!showSignInSignUp);
   };
 
@@ -61,7 +67,6 @@ function LoggedInUserComponent() {
     switch (selectedOption) {
       case "home":
         return <text text="">Home</text>;
-
       case "services":
         return (
           <ServicesComponent
@@ -72,12 +77,30 @@ function LoggedInUserComponent() {
 
       case "shop":
         return <text text="">Shopping Spree</text>;
-
       case "contact":
         return <text text="">Hello, we'll be back soon</text>;
       case "signin":
       case "signup":
-        return <SignInSignUpForm toggleForm={toggleSignInSignUp} />;
+        return showSignInSignUp ? (
+          <div className="user-login-form">
+            {showSignInSignUp && (
+              <SignInSignUpForm
+                toggleForm={toggleSignInSignUp}
+                onLoginSuccess={isUserLoggedIn}
+              />
+            )}
+          </div>
+        ) : null;
+
+      case "profile":
+        return (
+          <div className="user-board">
+            {/* User board content... */}
+            <button className="logout-button" onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
+        );
 
       default:
         return <text text="">Home</text>;
@@ -104,13 +127,10 @@ function LoggedInUserComponent() {
             handleNavbarHover={handleNavbarHover}
             handleNavbarLeave={handleNavbarLeave}
             isNavbarExpanded={isNavbarExpanded}
+            isUserLoggedIn={isUserLoggedIn}
             onSignInSignUpClick={toggleSignInSignUp} // Add prop for SignIn/SignUp click
           />
-          <div className="user-login-form">
-            {showSignInSignUp && (
-              <SignInSignUpForm toggleForm={toggleSignInSignUp} />
-            )}
-          </div>
+
           <main
             className={`content ${
               isNavbarExpanded

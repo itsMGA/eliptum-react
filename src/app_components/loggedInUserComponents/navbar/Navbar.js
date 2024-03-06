@@ -8,7 +8,8 @@ const Navbar = ({
   handleNavbarHover,
   handleNavbarLeave,
   isNavbarExpanded,
-  onSignInSignUpClick, // Add this prop
+  onSignInSignUpClick,
+  isUserLoggedIn,
 }) => {
   return (
     <>
@@ -182,7 +183,15 @@ const Navbar = ({
               <span className="link-text">Contact</span>
             </a>
           </li>
-          <li className="nav-item">
+          <li
+            className="nav-item"
+            id="profile"
+            onClick={
+              isUserLoggedIn
+                ? () => setSelectedOption("profile")
+                : () => setSelectedOption("signup")
+            }
+          >
             <a href="#" className="nav-link" onClick={onSignInSignUpClick}>
               <svg
                 aria-hidden="true"
@@ -207,7 +216,7 @@ const Navbar = ({
                   ></path>
                 </g>
               </svg>
-              <span className="link-text">Sign In/Up</span>
+              <span className="link-text">Profile</span>
             </a>
           </li>
           <li
