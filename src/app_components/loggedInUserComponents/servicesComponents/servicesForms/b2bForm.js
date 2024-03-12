@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './b2bForm.css';
+import { motion } from 'framer-motion';
 
 const B2BForm = ({ onFormSubmitSuccess }) => {
     const [formData, setFormData] = useState({
@@ -15,6 +16,10 @@ const B2BForm = ({ onFormSubmitSuccess }) => {
         contractScope: '',
         expectedCost: ''
     });
+    const [submissionMessage, setSubmissionMessage] = useState('');
+    const [messageColor, setMessageColor] = useState('#000'); // Default color
+    const [showMessage, setShowMessage] = useState(false); // New state to control message visibility
+
 
     useEffect(() => {
         const savedData = localStorage.getItem('b2bFormData');
@@ -37,7 +42,9 @@ const B2BForm = ({ onFormSubmitSuccess }) => {
         try {
             await axios.post('/orders/create', { ...formData, serviceName: 'Business to Business' });
             localStorage.removeItem('b2bFormData');
-            alert('Form submitted successfully!');
+            setSubmissionMessage('Form submitted successfully!');
+            setMessageColor('#4CAF50'); // Green for success
+            setShowMessage(true); // Show message on success
             setFormData({
                 companyName: '',
                 intention: '',
@@ -55,7 +62,9 @@ const B2BForm = ({ onFormSubmitSuccess }) => {
             }
         } catch (error) {
             console.error('Form submission error:', error);
-            alert('Form submission failed!');
+            setSubmissionMessage('Form submission failed! Contact an administrator');
+            setMessageColor('#FF6347'); // Red for failure
+            setShowMessage(true); // Show message on failure
         }
     };
 
@@ -189,7 +198,26 @@ const B2BForm = ({ onFormSubmitSuccess }) => {
                     required
                 />
             </div>
-            <button type="submit">Submit</button>
+            <div className="form-group">
+                <div className="button-container">
+                    <div
+                        className={`message-container ${showMessage ? 'message-visible' : ''}`}
+                        style={{ color: messageColor }}
+                    >
+                        {submissionMessage}
+                    </div>
+                    <motion.button
+                        whileHover={{ scale: 1.15 }}
+                        whileTap={{ scale: 0.95 }}
+                        animate={{ backgroundColor: submissionMessage.includes('successfully') ? "#4CAF50" : submissionMessage.includes('failed') ? "#FF6347" : "#5c7cfa" }}
+                        transition={{ duration: 0.1 }}
+                        onClick={() => setShowMessage(false)} // Optionally hide the message immediately on click
+                        type="submit"
+                    >
+                        Submit
+                    </motion.button>
+                </div>
+            </div>
         </form>
     );
 };
