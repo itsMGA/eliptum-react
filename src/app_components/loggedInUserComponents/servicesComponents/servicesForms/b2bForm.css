@@ -1,47 +1,103 @@
-/* servicesForms/b2bForm.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+/* Initial form state with animation */
 .b2b-form {
-    max-width: 70%;
-    max-height: 70%;
+    max-width: 400px;
     width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-    /* Center the form */
+    margin: 16px auto;
     padding: 20px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    border-radius: 10px;
+    border: 2px solid rgba(100, 100, 255, 0.6);
+    border-radius: 16px;
+    background: linear-gradient(to right top, rgba(255, 255, 255, 0.95), rgba(235, 235, 255, 0.95));
+    backdrop-filter: blur(12px);
+    box-shadow: 0 3px 24px rgba(0, 0, 0, 0.1);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #333;
+    /* Animation */
+    animation: expand 0.5s ease-out forwards;
 }
 
-.b2b-form input,
-.b2b-form textarea {
+@keyframes expand {
+    from {
+        max-height: 0;
+        opacity: 0;
+        padding: 0 20px;
+    }
+
+    to {
+        max-height: 1000px;
+        /* Adjust based on your form's actual max height */
+        opacity: 1;
+        padding: 20px;
+    }
+}
+
+/* Example of changing the form's appearance when not focused */
+.b2b-form:not(:focus-within) {
+    opacity: 0.9;
+    /* Slightly lower opacity to indicate it's not active */
+    /* You can't animate to 'display: none' or adjust height to '0' without JS */
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 14px;
+    color: #4a6cf7;
+}
+
+.order-input,
+textarea.order-input {
     width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    transition: border-color 0.3s ease;
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.85);
+    border: none;
+    /* Removing the plain line border */
+    box-shadow: inset 0 0 0 2px rgba(92, 124, 250, 0.4);
+    /* Subtle border effect */
+    box-sizing: border-box;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
-.b2b-form input:focus,
-.b2b-form textarea:focus {
+.order-input:hover,
+textarea.order-input:hover {
+    box-shadow: inset 0 0 0 2px rgba(74, 108, 247, 0.8);
+    /* More pronounced border effect on hover */
+}
+
+.order-input:focus,
+textarea.order-input:focus {
     outline: none;
-    border-color: #771cd3;
-    background-color: #f0f0f0;
+    box-shadow: inset 0 0 0 2px #3a4eb8, 0 0 0 4px rgba(74, 108, 247, 0.3);
+    /* Combining focus glow with border enhancement */
 }
 
-.b2b-form button {
+textarea.order-input {
+    height: 96px;
+}
+
+button {
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
-    background-color: #20247b;
+    border-radius: 20px;
+    background-color: #5c7cfa;
     color: white;
+    font-size: 14px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
-.b2b-form button:hover {
-    background-color: #fc5356;
+button:hover {
+    background-color: #4b65d3;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }

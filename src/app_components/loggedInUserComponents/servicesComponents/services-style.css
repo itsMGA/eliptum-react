@@ -15,6 +15,13 @@
   width: 100%;
 }
 
+.ss-services-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .feature-container {
   display: flex;
   flex-direction: column;
@@ -23,7 +30,7 @@
 }
 
 .service-form-content {
-  width: 100%;
+  width: 40%;
   height: 100%;
 }
 
@@ -202,7 +209,7 @@
 
   .services-row {
     gap: 2.3rem;
-    margin-top: 6rem;
+    /* margin-top: 6rem; */
   }
 
   .section {
