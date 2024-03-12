@@ -3,14 +3,17 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './b2bForm.css';
 
-const B2BForm = () => {
+const B2BForm = ({ onFormSubmitSuccess }) => { // Add a prop for handling form submission success
     const [formData, setFormData] = useState({
         companyName: '',
         intention: '',
+        companyAddress: '',
+        companyEmail: '',
+        companyPhone: '',
+        taxId: '', // Assuming you might need a tax identification number
     });
 
     useEffect(() => {
-        // Load saved form data from localStorage
         const savedData = localStorage.getItem('b2bFormData');
         if (savedData) {
             setFormData(JSON.parse(savedData));
@@ -19,12 +22,10 @@ const B2BForm = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prevFormData) => ({
+        setFormData(prevFormData => ({
             ...prevFormData,
             [name]: value,
         }));
-
-        // Save current form data to localStorage
         localStorage.setItem('b2bFormData', JSON.stringify({ ...formData, [name]: value }));
     };
 
@@ -34,11 +35,17 @@ const B2BForm = () => {
             await axios.post('/orders/create', { ...formData, serviceName: 'Business to Business' });
             localStorage.removeItem('b2bFormData'); // Clear saved data on successful submission
             alert('Form submitted successfully!');
-            // Reset form fields
             setFormData({
                 companyName: '',
                 intention: '',
+                companyAddress: '',
+                companyEmail: '',
+                companyPhone: '',
+                taxId: '',
             });
+            if (onFormSubmitSuccess) {
+                onFormSubmitSuccess(); // Call the prop function to handle additional actions on success
+            }
         } catch (error) {
             console.error('Form submission error:', error);
             alert('Form submission failed!');
@@ -62,7 +69,10 @@ const B2BForm = () => {
                 placeholder="Your intentions / requirements (max 3000 chars)"
                 maxLength="3000"
                 required
-            />
+            />            <input type="text" name="companyAddress" value={formData.companyAddress} onChange={handleChange} placeholder="Company Address" required />
+            <input type="email" name="companyEmail" value={formData.companyEmail} onChange={handleChange} placeholder="Company Email" required />
+            <input type="tel" name="companyPhone" value={formData.companyPhone} onChange={handleChange} placeholder="Company Phone" required />
+            <input type="text" name="taxId" value={formData.taxId} onChange={handleChange} placeholder="Tax/VAT ID" required />
             <button type="submit">Submit</button>
         </form>
     );

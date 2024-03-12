@@ -2,27 +2,37 @@
   align-self: center;
 }
 
-/* .container:has(.ss-services-row) {
+.card-selected {
+  width: 100%;
+}
+
+.services-row {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
-} */
+  height: 100%;
+  width: 100%;
+}
 
 .feature-container {
   display: flex;
   flex-direction: column;
   max-width: 25rem;
-  max-height: 20rem;
+  max-height: 25rem;
+}
+
+.service-form-content {
+  width: 100%;
+  height: 100%;
 }
 
 .card-selected {
   gap: 2rem;
-}
-
-
-.card-selected {
   transform: scale(0.8);
   width: 90%;
   height: 95%;
+  max-width: 55rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -191,13 +201,7 @@
   }
 
   .services-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    justify-content: center;
     gap: 2.3rem;
-    height: 100%;
-    width: 100%;
     margin-top: 6rem;
   }
 
@@ -262,18 +266,9 @@
   }
 
   .services-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    justify-content: center;
     gap: 1.2rem;
-    height: 100%;
-    width: 100%;
     margin-top: 3rem;
   }
 
-  .card-selected {
-    width: 100%;
-    /* You can adjust this as necessary to fit your design */
-  }
+
 }

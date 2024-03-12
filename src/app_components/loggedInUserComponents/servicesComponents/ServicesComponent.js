@@ -7,6 +7,7 @@ export default function ServicesComponent({
   services,
   selectedServiceIndex,
   handleServiceClick,
+  onFormSubmitSuccess
 }) {
   // Function to render a single service, updated to use the services prop
   const renderService = (item, index) => (
@@ -26,6 +27,7 @@ export default function ServicesComponent({
         desc={item.desc}
         selectedServiceIndex={selectedServiceIndex}
         index={index}
+        onFormSubmitSuccess={onFormSubmitSuccess} // Add this prop
       />
     </motion.div>
   );

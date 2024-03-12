@@ -65,6 +65,11 @@ function LoggedInUserComponent({
     }
   };
 
+  const handleFormSubmitSuccess = () => {
+    setSelectedServiceIndex(null);
+    setIsServiceSelected(false);
+  };
+
   const renderContent = () => {
     switch (selectedOption) {
       case "home":
@@ -89,6 +94,7 @@ function LoggedInUserComponent({
               <SignInSignUpForm
                 toggleForm={toggleSignInSignUp}
                 onLoginSuccess={handleLoginSuccess}
+                handleFormSubmitSuccess={handleFormSubmitSuccess}
               />
             )}
           </div>
