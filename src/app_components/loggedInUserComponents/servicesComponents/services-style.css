@@ -15,7 +15,7 @@
 }
 
 .card-selected {
-  gap: 10rem;
+  gap: 2rem;
 }
 
 
@@ -270,5 +270,10 @@
     height: 100%;
     width: 100%;
     margin-top: 3rem;
+  }
+
+  .card-selected {
+    width: 100%;
+    /* You can adjust this as necessary to fit your design */
   }
 }

@@ -1,0 +1,41 @@
+/* servicesForms/b2bForm.css */
+.b2b-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.b2b-form input,
+.b2b-form textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease;
+}
+
+.b2b-form input:focus,
+.b2b-form textarea:focus {
+    outline: none;
+    border-color: #771cd3;
+    background-color: #f0f0f0;
+}
+
+.b2b-form button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #20247b;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.b2b-form button:hover {
+    background-color: #fc5356;
+}
