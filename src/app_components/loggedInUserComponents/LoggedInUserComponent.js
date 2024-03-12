@@ -1,21 +1,39 @@
-// LoggedInUserComponent.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./navbar/style.css";
 import Navbar from "./navbar/Navbar";
 import "react-multi-carousel/lib/styles.css";
-import { services_data } from "./servicesComponents/services_data";
 import ServicesComponent from "./servicesComponents/ServicesComponent";
 import SignInSignUpForm from "./../sign_in_up/SignInSignUpForm";
 import { CookieConsentProvider } from "./../../cookies/cookie_consent";
 import CookiePolicyModal from "./../../cookies/CookiePolicyModal";
+import { fetchServices } from "./servicesComponents/fetchServices";
 
 function LoggedInUserComponent({
   isUserLoggedIn,
   handleLogout,
   handleLoginSuccess,
 }) {
+  const [services, setServices] = useState([]);
   const [showSignInSignUp, setShowSignInSignUp] = useState(false);
   const [isCookiePolicyVisible, setIsCookiePolicyVisible] = useState(false);
+  const [isNavbarExpanded, setIsNavbarExpanded] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("services");
+  const [selectedServiceIndex, setSelectedServiceIndex] = useState(null);
+  const [isServiceSelected, setIsServiceSelected] = useState(false);
+
+  useEffect(() => {
+    // Fetch services when the component mounts
+    const fetchAndSetServices = async () => {
+      try {
+        const fetchedServices = await fetchServices();
+        setServices(fetchedServices);
+      } catch (error) {
+        console.error("Error fetching services:", error);
+      }
+    };
+
+    fetchAndSetServices();
+  }, []);
 
   const toggleCookiePolicyModal = () => {
     setIsCookiePolicyVisible(!isCookiePolicyVisible);
@@ -25,60 +43,40 @@ function LoggedInUserComponent({
     setShowSignInSignUp(!showSignInSignUp);
   };
 
-  const toggleSignInSignUp2 = () => {
-    setShowSignInSignUp(!showSignInSignUp);
-  };
-
-  const [isNavbarExpanded, setIsNavbarExpanded] = useState(false);
-
   const handleNavbarHover = () => {
-    console.log("hovered");
     setIsNavbarExpanded(true);
   };
 
   const handleNavbarLeave = () => {
-    console.log("not hovered");
     setIsNavbarExpanded(false);
   };
 
-  const [selectedOption, setSelectedOption] = useState("services");
-
-  const [selectedServiceIndex, setSelectedServiceIndex] = useState(null);
-
-  const [isServiceSelected, setIsServiceSelected] = useState(false);
-
   const handleServiceClick = (index) => {
-    console.log("Clicked service index:", index); // Add a log to track the index clicked
-
-    if (index >= 0 && index < services_data.length) {
-      // Check if index is within range
+    if (index >= 0 && index < services.length) {
       if (isServiceSelected && selectedServiceIndex === index) {
-        setIsServiceSelected(false); // If already selected, deselect
-        console.log(false);
+        setIsServiceSelected(false);
         setSelectedServiceIndex(null);
       } else {
         setSelectedServiceIndex(index);
-        setIsServiceSelected(true); // Select the service
-        console.log(true);
+        setIsServiceSelected(true);
       }
     } else {
       console.error("Invalid index or index out of range");
     }
   };
-  const renderContent = () => {
-    console.log("user status" + isUserLoggedIn);
 
+  const renderContent = () => {
     switch (selectedOption) {
       case "home":
         return <text text="">Home</text>;
       case "services":
         return (
           <ServicesComponent
+            services={services}
             selectedServiceIndex={selectedServiceIndex}
             handleServiceClick={handleServiceClick}
           />
         );
-
       case "shop":
         return <text text="">Shopping Spree</text>;
       case "contact":
@@ -95,17 +93,14 @@ function LoggedInUserComponent({
             )}
           </div>
         ) : null;
-
       case "profile":
         return (
           <div className="user-board">
-            {/* User board content... */}
             <button className="logout-button" onClick={handleLogout}>
               Logout
             </button>
           </div>
         );
-
       default:
         return <text text="">Home</text>;
     }
@@ -132,9 +127,8 @@ function LoggedInUserComponent({
             handleNavbarLeave={handleNavbarLeave}
             isNavbarExpanded={isNavbarExpanded}
             isUserLoggedIn={isUserLoggedIn}
-            onSignInSignUpClick={toggleSignInSignUp} // Add prop for SignIn/SignUp click
+            onSignInSignUpClick={toggleSignInSignUp}
           />
-
           <main
             className={`content ${isNavbarExpanded
               ? "shiftContent"

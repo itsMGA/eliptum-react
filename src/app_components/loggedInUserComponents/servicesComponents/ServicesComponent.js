@@ -1,26 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Service from "./Service";
-import { fetchServices } from "./fetchServices"; // Ensure you import the fetchServices function
 import "./services-style.css";
 
 export default function ServicesComponent({
+  services,
   selectedServiceIndex,
   handleServiceClick,
 }) {
-  const [services, setServices] = useState([]); // State to hold the fetched services
-
-  useEffect(() => {
-    // Fetch services when the component mounts
-    const getServices = async () => {
-      const fetchedServices = await fetchServices();
-      setServices(fetchedServices);
-    };
-
-    getServices();
-  }, []);
-
-  // Function to render a single service, updated to use the services state
+  // Function to render a single service, updated to use the services prop
   const renderService = (item, index) => (
     <motion.div
       layout="position"
