@@ -8,9 +8,16 @@
 } */
 
 .feature-container {
+  display: flex;
+  flex-direction: column;
   max-width: 25rem;
   max-height: 20rem;
 }
+
+.card-selected {
+  gap: 10rem;
+}
+
 
 .card-selected {
   transform: scale(0.8);
@@ -58,20 +65,20 @@
 }
 
 .card-selected .feature-box-1 {
-  /* height: 90%;
-  width: 90%; */
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #771cd3;
-  border-radius: 80px;
-  padding: 40px 40px 40px 40px;
   background-color: white;
-  /* Set background to white */
+  /* Ensure background color is set */
   box-shadow: 0 0 20px 15px rgb(138, 130, 216);
-  /* Glowing green shadow */
+  /* Glowing shadow */
   border-radius: 110px;
-  /* Adjust as needed */
+  padding: 40px;
+  flex-shrink: 0;
+  /* Prevents the box from shrinking */
+  flex-grow: 1;
+  /* Allows the box to grow if needed */
+
 }
 
 .feature-box-1 .icon {
