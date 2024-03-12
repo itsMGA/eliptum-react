@@ -2,14 +2,14 @@ import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Service from "./Service";
 import "./services-style.css";
+import { getFormComponentForService } from './servicesForms/getFormComponentForService'; // Assuming this is the function from your first component
 
 export default function ServicesComponent({
   services,
   selectedServiceIndex,
   handleServiceClick,
-  onFormSubmitSuccess
+  onFormSubmitSuccess,
 }) {
-  // Function to render a single service, updated to use the services prop
   const renderService = (item, index) => (
     <motion.div
       layout="position"
@@ -27,10 +27,15 @@ export default function ServicesComponent({
         desc={item.desc}
         selectedServiceIndex={selectedServiceIndex}
         index={index}
-        onFormSubmitSuccess={onFormSubmitSuccess} // Add this prop
       />
     </motion.div>
   );
+
+  const FormComponent = selectedServiceIndex !== null ? getFormComponentForService(services[selectedServiceIndex].name, onFormSubmitSuccess) : null;
+
+  const handleFormClick = (event) => {
+    event.stopPropagation();
+  };
 
   return (
     <>
@@ -41,10 +46,7 @@ export default function ServicesComponent({
         crossOrigin="anonymous"
         referrerPolicy="no-referrer"
       />
-      <section
-        className={`section service-section ${selectedServiceIndex !== null ? " selected-serv-section" : ""
-          }`}
-      >
+      <section className={`section service-section ${selectedServiceIndex !== null ? "selected-serv-section" : ""}`}>
         <div className="container">
           <AnimatePresence>
             {selectedServiceIndex === null && (
@@ -58,23 +60,20 @@ export default function ServicesComponent({
                 <div className="page-header">
                   <div className="section-title">
                     <h2>Services</h2>
-                    <p>
-                      Enhance efficiency, reliability, and quality with
-                      automated test solutions.
-                    </p>
+                    <p>Enhance efficiency, reliability, and quality with automated test solutions.</p>
                   </div>
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
           <AnimatePresence>
-            <div
-              className={`row services-row ${selectedServiceIndex !== null ? " ss-services-row" : ""
-                }`}
-            >
-              {selectedServiceIndex === null
-                ? services.map((item, index) => renderService(item, index))
-                : renderService(services[selectedServiceIndex], selectedServiceIndex)}
+            <div className={`row services-row ${selectedServiceIndex !== null ? "ss-services-row" : ""}`}>
+              {selectedServiceIndex === null ? services.map(renderService) : renderService(services[selectedServiceIndex], selectedServiceIndex)}
+              {selectedServiceIndex !== null && FormComponent && (
+                <div className="service-form-content" onClick={handleFormClick}>
+                  <FormComponent />
+                </div>
+              )}
             </div>
           </AnimatePresence>
         </div>
