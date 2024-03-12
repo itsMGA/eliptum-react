@@ -2,12 +2,13 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import CookieConsent, { getCookieConsentValue } from "react-cookie-consent";
 import axios from "axios"; // Import Axios
 import "./style_cookie_consent.css";
+import axiosInstance from "../axiosConfig";
 
 const fetchCSRFToken = async () => {
   try {
     // Include credentials in the request to ensure cookies are sent and received
-    const response = await axios.get(
-      "https://eliptum.tech/user/visitor_config",
+    const response = await axiosInstance.get(
+      "/user/visitor_config",
       {
         withCredentials: true,
       },

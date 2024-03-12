@@ -66,9 +66,12 @@
   background-color: #771cd3;
   border-radius: 80px;
   padding: 40px 40px 40px 40px;
-  background-color: white; /* Set background to white */
-  box-shadow: 0 0 20px 15px rgb(138, 130, 216); /* Glowing green shadow */
-  border-radius: 110px; /* Adjust as needed */
+  background-color: white;
+  /* Set background to white */
+  box-shadow: 0 0 20px 15px rgb(138, 130, 216);
+  /* Glowing green shadow */
+  border-radius: 110px;
+  /* Adjust as needed */
 }
 
 .feature-box-1 .icon {
@@ -88,12 +91,14 @@
   line-height: 70px;
 }
 
-.feature-box-1 h5 {
+.feature-box-1 h1 {
   color: #20247b;
   font-weight: 600;
+  font-size: 1.2rem;
 }
 
 .feature-box-1 p {
+  font-size: 0.96rem;
   margin: 0;
 }
 
@@ -118,7 +123,7 @@
   top: -5px;
 }
 
-.feature-box-1:hover h5 {
+.feature-box-1:hover h1 {
   color: #ffffff;
 }
 
@@ -151,7 +156,8 @@
   max-width: 20rem;
   max-height: 18rem;
   padding: 32px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Symmetrical shadow */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  /* Symmetrical shadow */
   position: relative;
   z-index: 1;
   border-radius: 40px;
@@ -176,6 +182,7 @@
   .section-title {
     padding-bottom: 45px;
   }
+
   .services-row {
     display: flex;
     flex-wrap: wrap;
@@ -186,10 +193,12 @@
     width: 100%;
     margin-top: 6rem;
   }
+
   .section {
     padding-top: 4rem;
     position: relative;
-    transition: padding-top 0.5s ease; /* Adjust the duration and timing function as needed */
+    transition: padding-top 0.5s ease;
+    /* Adjust the duration and timing function as needed */
     /* other styles if any */
   }
 }
@@ -202,8 +211,10 @@
     flex-direction: column;
     max-width: 100%;
   }
+
   .section-title {
-    padding-top: 0.9rem; /* Add padding to the top */
+    padding-top: 0.9rem;
+    /* Add padding to the top */
   }
 
   .container {
@@ -217,20 +228,30 @@
   .services-desc {
     padding-left: 1.2rem;
     align-self: flex-end;
-    font-family: "Arial", sans-serif; /* Choose a modern font */
-    font-size: 1.2rem; /* Adjust font size */
-    color: #555; /* Choose a suitable color */
-    background-color: #f9f9f9; /* Add a subtle background color */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Symmetrical shadow */
+    font-family: "Arial", sans-serif;
+    /* Choose a modern font */
+    font-size: 1.2rem;
+    /* Adjust font size */
+    color: #555;
+    /* Choose a suitable color */
+    background-color: #f9f9f9;
+    /* Add a subtle background color */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    /* Symmetrical shadow */
   }
+
   .services-desc:hover {
-    color: #22076d; /* Lighten or change color on hover */
-    border-left-color: #6649b8; /* Accent border color changes on hover */
+    color: #22076d;
+    /* Lighten or change color on hover */
+    border-left-color: #6649b8;
+    /* Accent border color changes on hover */
   }
 
   .services-desc h2 {
-    margin: 0; /* Remove default margin */
-    font-size: 2.4rem; /* Adjust font size */
+    margin: 0;
+    /* Remove default margin */
+    font-size: 2.4rem;
+    /* Adjust font size */
   }
 
   .services-row {

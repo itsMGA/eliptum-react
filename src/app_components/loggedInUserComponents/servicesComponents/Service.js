@@ -1,5 +1,5 @@
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function Service({
   name,
@@ -12,9 +12,8 @@ export default function Service({
   const isSelected = selectedServiceIndex === index; // Check if the service is selected
 
   // Use the `isSelected` variable to conditionally apply a class or style
-  const combinedClassName = `feature-container ${className} ${
-    isSelected ? "card-selected" : ""
-  }`;
+  const combinedClassName = `feature-container ${className} ${isSelected ? "card-selected" : ""
+    }`;
 
   return (
     <div className={combinedClassName}>
@@ -24,7 +23,7 @@ export default function Service({
         </motion.div>
         {!isSelected && ( // Conditionally render the text
           <div className="feature-content">
-            <h5>{name}</h5>
+            <h1>{name}</h1>
             <p>{desc}</p>
           </div>
         )}

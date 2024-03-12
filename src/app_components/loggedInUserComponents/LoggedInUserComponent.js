@@ -1,7 +1,6 @@
 // LoggedInUserComponent.js
 import React, { useState } from "react";
 import "./navbar/style.css";
-import "./servicesComponents/services-style.css";
 import Navbar from "./navbar/Navbar";
 import "react-multi-carousel/lib/styles.css";
 import { services_data } from "./servicesComponents/services_data";
@@ -137,13 +136,12 @@ function LoggedInUserComponent({
           />
 
           <main
-            className={`content ${
-              isNavbarExpanded
-                ? "shiftContent"
-                : isNavbarExpanded === false
-                  ? "shiftContentBack"
-                  : ""
-            }`}
+            className={`content ${isNavbarExpanded
+              ? "shiftContent"
+              : isNavbarExpanded === false
+                ? "shiftContentBack"
+                : ""
+              }`}
           >
             {renderContent()}
           </main>

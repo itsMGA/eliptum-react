@@ -10,6 +10,8 @@ import axios from "axios";
 import PhoneInput from "react-phone-input-2";
 import "./phone_style.css";
 import { encryptData } from "./encryptUtil"; // adjust the path according to your project structure
+import axiosInstance from "../../axiosConfig";
+
 
 const SignInSignUpForm = ({ toggleForm, onLoginSuccess }) => {
   const [formType, setFormType] = useState("signin");
@@ -67,12 +69,10 @@ const SignInSignUpForm = ({ toggleForm, onLoginSuccess }) => {
         return;
       }
       try {
-        const public_key_r = await axios.get(
-          "https://eliptum.tech/get-public-key",
-          {
-            withCredentials: true, // This is crucial for cookies to be sent and received in cross-origin requests
-          },
-        );
+        const public_key_r = await axiosInstance.get("/get-public-key", {
+          withCredentials: true,
+        });
+
         const publicKey = public_key_r.data.publicKey;
         const csrfToken = public_key_r.data.csrf_token;
         console.log(csrfToken);
@@ -82,8 +82,8 @@ const SignInSignUpForm = ({ toggleForm, onLoginSuccess }) => {
           false,
         );
 
-        const response = await axios.post(
-          "https://eliptum.tech/user/login",
+        const response = await axiosInstance.post(
+          "/user/login",
           {
             email: login_email,
             password: encryptedPassword,
@@ -131,8 +131,8 @@ const SignInSignUpForm = ({ toggleForm, onLoginSuccess }) => {
       }
 
       try {
-        const public_key_r = await axios.get(
-          "https://eliptum.tech/get-public-key",
+        const public_key_r = await axiosInstance.get(
+          "/get-public-key",
           {
             withCredentials: true, // This is crucial for cookies to be sent and received in cross-origin requests
           },
@@ -142,8 +142,8 @@ const SignInSignUpForm = ({ toggleForm, onLoginSuccess }) => {
         console.log(csrfToken);
         const encryptedPassword = await encryptData(password, publicKey, false);
 
-        const response = await axios.post(
-          "https://eliptum.tech/user/create",
+        const response = await axiosInstance.post(
+          "/user/create",
           {
             username,
             password: encryptedPassword,

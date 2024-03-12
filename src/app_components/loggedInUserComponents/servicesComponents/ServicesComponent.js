@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Service from "./Service";
-import { services_data } from "./services_data";
+import { fetchServices } from "./fetchServices"; // Ensure you import the fetchServices function
+import "./services-style.css";
 
 export default function ServicesComponent({
   selectedServiceIndex,
   handleServiceClick,
 }) {
-  // Function to render a single service
+  const [services, setServices] = useState([]); // State to hold the fetched services
+
+  useEffect(() => {
+    // Fetch services when the component mounts
+    const getServices = async () => {
+      const fetchedServices = await fetchServices();
+      setServices(fetchedServices);
+    };
+
+    getServices();
+  }, []);
+
+  // Function to render a single service, updated to use the services state
   const renderService = (item, index) => (
     <motion.div
       layout="position"
@@ -39,9 +52,8 @@ export default function ServicesComponent({
         referrerPolicy="no-referrer"
       />
       <section
-        className={`section service-section ${
-          selectedServiceIndex !== null ? " selected-serv-section" : ""
-        }`}
+        className={`section service-section ${selectedServiceIndex !== null ? " selected-serv-section" : ""
+          }`}
       >
         <div className="container">
           <AnimatePresence>
@@ -67,16 +79,12 @@ export default function ServicesComponent({
           </AnimatePresence>
           <AnimatePresence>
             <div
-              className={`row services-row ${
-                selectedServiceIndex !== null ? " ss-services-row" : ""
-              }`}
+              className={`row services-row ${selectedServiceIndex !== null ? " ss-services-row" : ""
+                }`}
             >
               {selectedServiceIndex === null
-                ? services_data.map((item, index) => renderService(item, index))
-                : renderService(
-                    services_data[selectedServiceIndex],
-                    selectedServiceIndex,
-                  )}
+                ? services.map((item, index) => renderService(item, index))
+                : renderService(services[selectedServiceIndex], selectedServiceIndex)}
             </div>
           </AnimatePresence>
         </div>
