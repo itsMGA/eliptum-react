@@ -1,15 +1,33 @@
-import React from "react";
-import B2BForm from './b2bForm'; // Adjust the path as needed to correctly import your B2BForm
+import React, { useState } from "react";
+import B2BForm from './b2bForm';
+import ManageTests from "./testManagement/manageTests";
+import RunTests from "./testManagement/runTests";
 
-// This function returns a React component based on the serviceName argument
-export function getFormComponentForService(serviceName, onFormSubmitSuccess) {
+export function getFormComponentForService(serviceName, onFormSubmitSuccess, showManageTests, handleManageTestsClick, handleTestRunsClick) {
     switch (serviceName) {
         case 'Business to Business':
             return () => <B2BForm onFormSubmitSuccess={onFormSubmitSuccess} />;
-        // Add more cases here for different services if necessary
-        case 'Service Name 2':
-            return () => <div>Form for Service Name 2</div>;
+        case 'On Demand Test':
+            return () => <OnDemandTests
+                showManageTests={showManageTests}
+                handleManageTestsClick={handleManageTestsClick}
+                handleTestRunsClick={handleTestRunsClick}
+            />;
         default:
             return () => <div>NO FORM FOUND</div>;
     }
+}
+
+function OnDemandTests({ showManageTests, handleManageTestsClick, handleTestRunsClick }) {
+    return (
+        <div className="on-demand-tests">
+            <div className="button-container">
+                <button onClick={handleManageTestsClick}>Manage Tests</button>
+                <button onClick={handleTestRunsClick}>Test Runs</button>
+            </div>
+            <div className="content-container">
+                {showManageTests ? <ManageTests /> : <RunTests />}
+            </div>
+        </div>
+    );
 }

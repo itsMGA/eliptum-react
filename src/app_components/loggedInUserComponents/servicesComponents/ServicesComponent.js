@@ -1,8 +1,8 @@
-import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Service from "./Service";
 import "./services-style.css";
 import { getFormComponentForService } from './servicesForms/getFormComponentForService'; // Assuming this is the function from your first component
+import React, { useState } from "react";
 
 export default function ServicesComponent({
   services,
@@ -10,6 +10,18 @@ export default function ServicesComponent({
   handleServiceClick,
   onFormSubmitSuccess,
 }) {
+
+  const [showManageTests, setShowManageTests] = useState(false);
+
+  const handleManageTestsClick = () => {
+    setShowManageTests(true);
+  };
+
+  const handleTestRunsClick = () => {
+    setShowManageTests(false);
+  };
+
+
   const renderService = (item, index) => (
     <motion.div
       layout="position"
@@ -31,7 +43,7 @@ export default function ServicesComponent({
     </motion.div>
   );
 
-  const FormComponent = selectedServiceIndex !== null ? getFormComponentForService(services[selectedServiceIndex].name, onFormSubmitSuccess) : null;
+  const FormComponent = selectedServiceIndex !== null ? getFormComponentForService(services[selectedServiceIndex].name, onFormSubmitSuccess, showManageTests, handleManageTestsClick, handleTestRunsClick) : null;
 
   const handleFormClick = (event) => {
     event.stopPropagation();

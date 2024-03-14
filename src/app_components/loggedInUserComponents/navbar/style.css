@@ -1,6 +1,7 @@
 * {
   -ms-overflow-style: none;
 }
+
 ::-webkit-scrollbar {
   display: none;
 }
@@ -41,7 +42,8 @@ body::-webkit-scrollbar-thumb {
   background-color: var(--bg-primary);
   transition: width 600ms ease;
   overflow: scroll;
-  z-index: 1000; /* Ensure it's above other elements */
+  z-index: 1000;
+  /* Ensure it's above other elements */
 }
 
 .navbar-nav {
@@ -138,7 +140,8 @@ body::-webkit-scrollbar-thumb {
 
 .smooth_text {
   color: black;
-  transition: color 0.3s ease-in-out; /* Specify the property to transition and its duration */
+  transition: color 0.3s ease-in-out;
+  /* Specify the property to transition and its duration */
 }
 
 .fade-in {
@@ -264,9 +267,16 @@ body::-webkit-scrollbar-thumb {
   border: none;
   cursor: pointer;
   font-size: 1rem;
-  margin: 20px; /* Adjust as needed */
+  margin: 20px;
+  /* Adjust as needed */
 }
 
 .logout-button:hover {
   background-color: var(--bg-primary);
 }
+
+
+
+/* On demand tests window styling */
+
+/* manageTests.css - Adjust your existing CSS or add this to enhance the style */

@@ -1,0 +1,124 @@
+/* manageTests.css - Adjust your existing CSS or add this to enhance the style */
+.content-container {
+    position: relative;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
+    /* Optional: Set a minimum height to fill the viewport */
+}
+
+.manage-tests {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - var(--default-navbar-size));
+    margin: 16px var(--default-navbar-size) 16px 16px;
+    border: 2px solid rgba(100, 100, 255, 0.6);
+    border-radius: 16px;
+    background: linear-gradient(to right top, rgba(255, 255, 255, 0.95), rgba(235, 235, 255, 0.95));
+    backdrop-filter: blur(12px);
+    box-shadow: 0 3px 24px rgba(0, 0, 0, 0.1);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #333;
+    animation: expand 0.5s ease-out forwards;
+    transition: margin 600ms ease, width 600ms ease;
+    right: var(--default-navbar-size);
+    flex-grow: 1;
+    /* Add this property to make .manage-tests grow and fill the available space */
+}
+
+.projects-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    /* Added to wrap buttons to the next line if they don't fit */
+}
+
+.projects-container button {
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 0.6rem 0.5rem;
+    font-size: 0.9rem;
+    background-color: #2a9d8f;
+    color: #fff;
+    border: none;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease;
+    max-width: 6rem;
+    /* Limit maximum width */
+    white-space: nowrap;
+    /* Prevent text from wrapping */
+    overflow: hidden;
+    /* Hide overflowing text */
+    text-overflow: ellipsis;
+    /* Display ellipsis for truncated text */
+}
+
+.projects-container button:hover {
+    background-color: #264653;
+    /* Darker green color on hover */
+}
+
+
+.projects-container,
+.sections-container,
+.test-cases-container {
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+@keyframes expand {
+    from {
+        max-height: 0;
+        opacity: 0;
+        padding: 0 20px;
+    }
+
+    to {
+        max-height: 1000px;
+        opacity: 1;
+        padding: 20px;
+    }
+}
+
+
+input[type="text"]:hover,
+button:hover {
+    box-shadow: inset 0 0 0 2px rgba(74, 108, 247, 0.8);
+}
+
+input[type="text"]:focus,
+button:focus {
+    outline: none;
+    box-shadow: inset 0 0 0 2px #3a4eb8, 0 0 0 4px rgba(74, 108, 247, 0.3);
+}
+
+
+.project,
+.section {
+    margin-bottom: 20px;
+}
+
+.section h4 {
+    cursor: pointer;
+    color: #4a6cf7;
+    transition: color 0.3s ease;
+}
+
+.section h4:hover {
+    color: #3a4eb8;
+}
+
+.button-container {
+    padding-bottom: 1rem;
+}

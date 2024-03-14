@@ -207,7 +207,7 @@ const Navbar = ({
                   <path
                     fill="currentColor"
                     d="M313.6 304h-16.7a174.08 174.08 0 0 1-145.8 0h-16.7A134.4 134.4 0 0 0 0 438.4V464a48 48 0 0 0 48 48h352a48 48 0 0 0 48-48v-25.6a134.4 134.4 0 0 0-134.4-134.4z"
-                    // className="fa-secondary"
+                  // className="fa-secondary"
                   ></path>
                   <path
                     fill="currentColor"
