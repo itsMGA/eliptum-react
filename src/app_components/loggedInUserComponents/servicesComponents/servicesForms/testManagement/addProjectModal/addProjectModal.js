@@ -2,11 +2,11 @@ import axiosInstance from "../../../../../../axiosConfig";
 import React, { useState } from "react";
 import "./addProjectModal.css"; // Ensure this CSS supports the dropdown effect
 
-function AddProjectModal({ onClose, onProjectAdded }) {
+
+function AddProjectModal({ onClose }) {
     const [projectName, setProjectName] = useState("");
     const [projectDescription, setProjectDescription] = useState("");
-    const [message, setMessage] = useState("");
-    const [showForm, setShowForm] = useState(false); // State to toggle form visibility
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -25,11 +25,13 @@ function AddProjectModal({ onClose, onProjectAdded }) {
         }
     };
 
+
     return (
-        <div className="project-container">
-            <button onClick={() => setShowForm(!showForm)}>Add Project</button>
-            {showForm && (
-                <form onSubmit={handleSubmit} className="project-form">
+        <div className="modal-overlay" onClick={onClose}>
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                <span className="modal-close" onClick={onClose}>&times;</span>
+                <h3>Create New Project</h3>
+                <form onSubmit={handleSubmit}>
                     <input
                         type="text"
                         placeholder="Project Name"
@@ -44,11 +46,8 @@ function AddProjectModal({ onClose, onProjectAdded }) {
                         required
                     ></textarea>
                     <button type="submit">Create Project</button>
-                    <span className={message.includes("success") ? "success-message" : "error-message"}>
-                        {message}
-                    </span>
                 </form>
-            )}
+            </div>
         </div>
     );
 }

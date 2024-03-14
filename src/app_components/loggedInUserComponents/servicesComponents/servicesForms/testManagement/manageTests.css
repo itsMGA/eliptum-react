@@ -28,7 +28,6 @@
     transition: margin 600ms ease, width 600ms ease;
     right: var(--default-navbar-size);
     flex-grow: 1;
-    /* Add this property to make .manage-tests grow and fill the available space */
 }
 
 .projects-container {
@@ -121,4 +120,25 @@ button:focus {
 
 .button-container {
     padding-bottom: 1rem;
+}
+
+.manage-tests {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.add-project-container {
+    position: relative;
+}
+
+.add-project-btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
 }

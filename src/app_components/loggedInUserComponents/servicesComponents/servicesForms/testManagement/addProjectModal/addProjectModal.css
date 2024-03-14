@@ -1,102 +1,45 @@
-/* Base container for your add project functionality */
-.project-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-}
-
-/* Style for the button that toggles the form visibility */
-.project-container>button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-family: 'Poppins', sans-serif;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease;
-}
-
-.project-container>button:hover {
-    background-color: #0056b3;
-}
-
-/* Animation and style for the form appearing */
-.project-form {
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 400px;
-    /* Adjust based on your preference */
-    margin-top: 20px;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: white;
-    animation: slideDown 0.3s ease-out forwards;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Input and textarea styling */
-.project-form input[type="text"],
-.project-form textarea {
-    border: 1px solid #ccc;
+.modal-content {
+    background: white;
+    padding: 20px;
     border-radius: 5px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
     padding: 10px;
-    font-size: 14px;
-    font-family: 'Poppins', sans-serif;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-.project-form textarea {
-    resize: vertical;
-    /* Allows vertical resizing, might be useful for long descriptions */
-}
-
-/* Submit button inside the form */
-.project-form button[type="submit"] {
+button[type="submit"] {
     background-color: #28a745;
     color: white;
+    padding: 10px 20px;
     border: none;
-    padding: 10px 0;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.project-form button[type="submit"]:hover {
-    background-color: #218838;
-}
-
-/* Success and error messages */
-.success-message,
-.error-message {
-    padding: 10px;
-    border-radius: 5px;
-    color: white;
-    font-size: 14px;
-    text-align: center;
-    margin-top: 10px;
-}
-
-.success-message {
-    background-color: #28a745;
-}
-
-.error-message {
-    background-color: #dc3545;
 }
